@@ -246,6 +246,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);dis
         <div class="hero-brand">nacré</div>
         <p class="hero-tagline">Your luxury beauty edit</p>
       </div>
+      <div class="hero-search">
+        <span class="hero-search-icon">🔍</span>
+        <input type="text" placeholder="What beauty product are you looking for?" oninput="document.getElementById('search').value=this.value;applyFilters()">
+        <button class="hero-search-btn">→</button>
+      </div>
     </div>
 
     <div class="cat-bar">
@@ -632,30 +637,30 @@ function buildHeroFloats(products) {
   const container = document.getElementById('hero-floats');
   if (!container || !products.length) return;
   
-  const picks = products.filter(p => p.image_url).slice(0, 5);
+  const picks = products.filter(p => p.image_url).slice(0, 6);
   if (!picks.length) return;
 
+  // shop.app style: large cards at edges, smaller ones in middle
   const positions = [
-    {left:'4%', top:'10%', w:110, delay:0},
-    {left:'18%', top:'55%', w:90, delay:1.5},
-    {left:'72%', top:'8%', w:100, delay:0.8},
-    {left:'82%', top:'52%', w:105, delay:2},
-    {left:'40%', top:'5%', w:85, delay:1},
+    {left:'2%',  top:'8%',  w:150, h:185, rot:'-2deg', delay:'0s',   label:true},
+    {left:'16%', top:'52%', w:120, h:145, rot:'2deg',  delay:'1.8s', label:false},
+    {left:'64%', top:'5%',  w:145, h:175, rot:'1.5deg',delay:'0.6s', label:true},
+    {left:'78%', top:'48%', w:130, h:155, rot:'-1deg', delay:'2.2s', label:false},
+    {left:'36%', top:'2%',  w:105, h:125, rot:'0deg',  delay:'1.2s', label:false},
+    {left:'50%', top:'60%', w:115, h:135, rot:'-1.5deg',delay:'0.4s',label:false},
   ];
 
   container.innerHTML = picks.map((p, i) => {
-    const pos = positions[i % positions.length];
+    const pos = positions[i];
     const src = p.image_url;
     const l = (p.name||'N')[0].toUpperCase();
     const imgHtml = src
-      ? `<img src="${src}" onerror="this.outerHTML='<div class=float-card-ph style=font-size:1.5rem>${l}</div>'">`
-      : `<div class="float-card-ph" style="font-size:1.5rem">${l}</div>`;
-    return `<div class="float-card" style="left:${pos.left};top:${pos.top};width:${pos.w}px;animation-delay:${pos.delay}s">
-      <div style="height:${pos.w}px">${imgHtml}</div>
-      <div class="float-info">
-        <div class="float-name">${p.name||''}</div>
-        <div class="float-stars">★★★★★</div>
-      </div>
+      ? `<img src="${src}" alt="${p.name}" onerror="this.outerHTML='<div class=float-card-ph>${l}</div>'">`
+      : `<div class="float-card-ph">${l}</div>`;
+    const labelHtml = pos.label ? `<div class="float-label"><div class="float-name">${p.name||''}</div><div class="float-stars">★★★★★ ${p.rating||''}</div></div>` : '';
+    return `<div class="float-card" style="left:${pos.left};top:${pos.top};width:${pos.w}px;--rot:${pos.rot};animation-duration:${4+i*0.7}s;animation-delay:${pos.delay}">
+      <div style="height:${pos.h}px;overflow:hidden">${imgHtml}</div>
+      ${labelHtml}
     </div>`;
   }).join('');
 }
