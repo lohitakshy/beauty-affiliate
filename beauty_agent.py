@@ -536,6 +536,3 @@ if __name__ == "__main__":
     schedule.every().day.at("06:00").do(run_daily_agent)
 
     print("\nAgent scheduled. Running daily at 06:00 AM.")
-    while True:
-        schedule.run_pending()
-        time.sleep(60)
