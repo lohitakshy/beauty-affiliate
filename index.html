@@ -10,16 +10,16 @@
 :root{--white:#fff;--bg:#F5F4F2;--border:#E8E8E8;--text:#111;--muted:#777;--gold:#C9A96E;--sidebar:68px;--radius:20px}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);display:flex;min-height:100vh;overflow-x:hidden}
 
-/* ── SIDEBAR ── */
+/* SIDEBAR */
 .sidebar{width:var(--sidebar);background:var(--white);border-right:1px solid var(--border);position:fixed;top:0;left:0;bottom:0;display:flex;flex-direction:column;align-items:center;padding:16px 0;gap:4px;z-index:200}
 .logo-mark{font-family:'Playfair Display',serif;font-size:11px;letter-spacing:.15em;color:var(--text);writing-mode:vertical-rl;transform:rotate(180deg);margin-bottom:20px;text-decoration:none;font-weight:600;cursor:pointer}
 .sicon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;transition:background .15s;border:none;background:transparent;color:var(--muted)}
 .sicon:hover,.sicon.active{background:var(--bg);color:var(--text)}
 
-/* ── MAIN ── */
+/* MAIN */
 .main{margin-left:var(--sidebar);flex:1;min-height:100vh;display:flex;flex-direction:column}
 
-/* ── TOPBAR ── */
+/* TOPBAR */
 .topbar{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.5rem;height:60px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:100}
 .search-wrap{flex:1;max-width:520px;position:relative}
 .search-wrap input{width:100%;background:var(--bg);border:1.5px solid transparent;border-radius:40px;padding:10px 20px 10px 42px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);outline:none;transition:border-color .2s}
@@ -29,193 +29,133 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);dis
 .follow-btn{margin-left:auto;background:var(--text);color:var(--white);border:none;border-radius:40px;padding:9px 20px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;text-decoration:none;white-space:nowrap;transition:opacity .15s}
 .follow-btn:hover{opacity:.8}
 
-/* ══════════════ HOME VIEW ══════════════ */
+/* ═══ HOME VIEW ═══ */
 #home-view{display:flex;flex-direction:column;flex:1}
 
+/* HERO — shop.app style */
+.hero{background:var(--white);border-bottom:1px solid var(--border);position:relative;height:400px;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px}
+.hero-floats{position:absolute;inset:0;pointer-events:none;z-index:1}
+.fc{position:absolute;background:var(--white);border-radius:16px;box-shadow:0 4px 24px rgba(0,0,0,.10);overflow:hidden;border:1px solid rgba(0,0,0,.05)}
+.fc img{width:100%;height:100%;object-fit:cover;display:block}
+.fc-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f5f0ea,#ede8e0);font-family:'Playfair Display',serif;color:#C4B49A;font-style:italic;font-size:2rem}
+.fc-info{padding:7px 9px;background:var(--white)}
+.fc-name{font-size:10px;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:130px}
+.fc-stars{color:#F5A623;font-size:9px;margin-top:1px}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.hero-center{position:relative;z-index:2;text-align:center}
+.hero-brand{font-family:'Playfair Display',serif;font-size:clamp(4.5rem,12vw,8rem);font-weight:400;font-style:italic;color:var(--text);letter-spacing:-.02em;line-height:1}
+.hero-sub{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.hero-search{position:relative;z-index:2;width:min(500px,88vw)}
+.hero-search input{width:100%;background:var(--white);border:1.5px solid var(--border);border-radius:40px;padding:13px 52px 13px 22px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);outline:none;box-shadow:0 2px 16px rgba(0,0,0,.07);transition:border-color .2s}
+.hero-search input:focus{border-color:#bbb}
+.hero-search input::placeholder{color:var(--muted)}
+.hero-search-btn{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:38px;height:38px;background:var(--text);border:none;border-radius:50%;cursor:pointer;color:#fff;font-size:17px;display:flex;align-items:center;justify-content:center}
 
-
-/* CATEGORY BAR */
+/* CAT BAR */
 .cat-bar{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;height:52px;align-items:center}
 .cat-bar::-webkit-scrollbar{display:none}
 .cat-pill{display:flex;align-items:center;gap:6px;white-space:nowrap;padding:6px 16px;border-radius:40px;border:1.5px solid var(--border);background:transparent;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--muted);cursor:pointer;transition:all .15s;flex-shrink:0}
 .cat-pill:hover{border-color:#999;color:var(--text)}
 .cat-pill.active{background:var(--text);border-color:var(--text);color:var(--white)}
 
-/* HOME CONTENT */
+/* CONTENT */
 .home-content{padding:1.5rem;flex:1}
 .section{margin-bottom:2.5rem}
 .section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1rem}
 .section-title{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:400}
 .section-count{font-size:12px;color:var(--muted)}
-
-/* PRODUCT GRID — shop.app card style */
 .product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
 
-.card{background:var(--white);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:box-shadow .25s,transform .25s;position:relative;border:1px solid var(--border)}
+/* CARD */
+.card{background:var(--white);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:box-shadow .25s,transform .25s;border:1px solid var(--border)}
 .card:hover{box-shadow:0 8px 32px rgba(0,0,0,.10);transform:translateY(-3px)}
-
-/* Card hero image — full bleed like shop.app */
 .card-hero{position:relative;height:220px;overflow:hidden;background:#F0EBE3}
 .card-hero img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
 .card:hover .card-hero img{transform:scale(1.06)}
-.card-hero-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(140deg,#f5f0ea 0%,#e8e0d5 100%)}
+.card-hero-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(140deg,#f5f0ea,#e8e0d5)}
 .card-hero-letter{font-family:'Playfair Display',serif;font-size:4rem;color:#C4B49A;font-style:italic}
-
-/* Top overlay — brand + rating */
-.card-overlay-top{position:absolute;top:0;left:0;right:0;padding:12px 14px;background:linear-gradient(to bottom,rgba(0,0,0,.35) 0%,transparent 100%);display:flex;align-items:flex-start;justify-content:space-between}
-.card-brand-name{font-size:13px;font-weight:600;color:#fff;letter-spacing:.02em;text-shadow:0 1px 3px rgba(0,0,0,.4)}
-.card-rating-pill{display:flex;align-items:center;gap:4px;background:rgba(0,0,0,.35);border-radius:40px;padding:3px 8px;backdrop-filter:blur(4px)}
+.card-overlay{position:absolute;top:0;left:0;right:0;padding:12px 14px;background:linear-gradient(to bottom,rgba(0,0,0,.4),transparent);display:flex;align-items:flex-start;justify-content:space-between}
+.card-brand-lbl{font-size:12px;font-weight:600;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.4)}
+.card-rating-pill{display:flex;align-items:center;gap:3px;background:rgba(0,0,0,.3);border-radius:40px;padding:3px 8px;backdrop-filter:blur(4px)}
 .card-rating-pill span{font-size:11px;color:#fff;font-weight:500}
-.card-star{color:#F5A623;font-size:11px}
-
-/* Badge */
-.card-badge{position:absolute;bottom:12px;left:12px;background:rgba(255,255,255,.92);border-radius:40px;padding:3px 10px;font-size:10px;font-weight:600;color:var(--gold);letter-spacing:.03em}
-
-/* Product thumbnails strip — shop.app style */
+.card-badge{position:absolute;bottom:10px;left:12px;background:rgba(255,255,255,.92);border-radius:40px;padding:3px 10px;font-size:10px;font-weight:600;color:var(--gold)}
 .card-thumbs{display:flex;gap:6px;padding:10px 12px;background:rgba(255,255,255,.95);border-top:1px solid rgba(0,0,0,.06)}
 .card-thumb{width:52px;height:52px;border-radius:10px;overflow:hidden;background:var(--bg);border:1px solid var(--border);flex-shrink:0}
 .card-thumb img{width:100%;height:100%;object-fit:cover}
-.card-thumb-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.2rem;color:#C4B49A;font-style:italic}
-
-/* Card body */
+.card-thumb-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1rem;color:#C4B49A;font-style:italic}
 .card-body{padding:12px 14px 14px}
-.card-name{font-size:13px;color:var(--text);line-height:1.4;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.6em}
-.card-view-btn{width:100%;background:var(--text);color:var(--white);border:none;border-radius:10px;padding:9px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:background .15s;text-align:center}
+.card-name{font-size:13px;color:var(--text);line-height:1.4;margin-bottom:10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.6em}
+.card-view-btn{width:100%;background:var(--text);color:var(--white);border:none;border-radius:10px;padding:9px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:background .15s}
 .card-view-btn:hover{background:#333}
 
-/* Skeleton */
+/* SKELETON */
 .skel{background:var(--white);border-radius:var(--radius);border:1px solid var(--border);overflow:hidden}
 .skel-hero{height:220px;background:linear-gradient(90deg,#f0f0f0 25%,#e8e8e8 50%,#f0f0f0 75%);background-size:200% 100%;animation:sh 1.5s infinite}
 .skel-body{padding:12px 14px}
 .skel-line{height:11px;border-radius:6px;margin-bottom:8px;background:linear-gradient(90deg,#f0f0f0 25%,#e8e8e8 50%,#f0f0f0 75%);background-size:200% 100%;animation:sh 1.5s infinite}
 .skel-line.s{width:55%}.skel-line.b{height:32px;margin-top:8px;border-radius:10px}
 @keyframes sh{0%{background-position:200% 0}100%{background-position:-200% 0}}
-
 .no-results{display:none;text-align:center;padding:4rem 2rem;color:var(--muted)}
 .no-results h3{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--text);margin-bottom:.5rem}
 
-/* ══════════════ PRODUCT DETAIL VIEW ══════════════ */
+/* ═══ PRODUCT DETAIL VIEW ═══ */
 #product-view{display:none;flex:1;flex-direction:column}
-
-/* Back bar */
 .back-bar{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.5rem;height:52px;display:flex;align-items:center;gap:12px;position:sticky;top:60px;z-index:90}
 .back-btn{display:flex;align-items:center;gap:6px;background:none;border:none;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);cursor:pointer;padding:6px 12px;border-radius:8px;transition:background .15s}
 .back-btn:hover{background:var(--bg)}
-.back-breadcrumb{font-size:13px;color:var(--muted)}
-
-/* Product layout */
-.product-layout{display:grid;grid-template-columns:1fr 420px;gap:0;flex:1;min-height:0}
-
-/* LEFT — image gallery */
+.back-crumb{font-size:13px;color:var(--muted)}
+.product-layout{display:grid;grid-template-columns:1fr 420px;flex:1}
 .product-gallery{padding:1.5rem;display:flex;gap:12px;align-items:flex-start;position:sticky;top:112px;height:fit-content}
-
 .thumb-strip{display:flex;flex-direction:column;gap:8px;flex-shrink:0}
 .thumb-item{width:64px;height:64px;border-radius:10px;overflow:hidden;cursor:pointer;border:2px solid transparent;transition:border-color .15s;background:var(--bg)}
 .thumb-item img{width:100%;height:100%;object-fit:cover}
 .thumb-item.active{border-color:var(--text)}
 .thumb-item-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.2rem;color:#C4B49A}
-
 .main-img-wrap{flex:1;border-radius:var(--radius);overflow:hidden;background:var(--bg);aspect-ratio:1;position:relative}
 .main-img-wrap img{width:100%;height:100%;object-fit:cover;transition:opacity .3s}
 .main-img-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f5f0ea,#ede8e0);font-family:'Playfair Display',serif;font-size:6rem;color:#C4B49A;font-style:italic}
-
-/* Slide indicators */
-.img-indicators{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:5px}
+.img-dots{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:5px}
 .img-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.5);cursor:pointer;transition:background .2s}
 .img-dot.active{background:#fff}
-
-/* RIGHT — product info */
-.product-info{background:var(--white);border-left:1px solid var(--border);padding:2rem 1.5rem;overflow-y:auto;display:flex;flex-direction:column;gap:0}
-
+.product-info{background:var(--white);border-left:1px solid var(--border);padding:2rem 1.5rem;overflow-y:auto;display:flex;flex-direction:column}
 .pi-brand-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.pi-brand-avatar{width:36px;height:36px;border-radius:50%;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:14px;color:var(--muted);overflow:hidden;flex-shrink:0}
-.pi-brand-name{font-size:13px;font-weight:600;color:var(--text)}
-.pi-dots{margin-left:auto;color:var(--muted);cursor:pointer;font-size:20px;line-height:1}
-
-.pi-name{font-size:1.35rem;font-weight:500;line-height:1.3;margin-bottom:10px;color:var(--text)}
-
-.pi-rating-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.pi-avatar{width:36px;height:36px;border-radius:50%;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:14px;color:var(--muted);flex-shrink:0}
+.pi-brand{font-size:13px;font-weight:600}
+.pi-dots{margin-left:auto;color:var(--muted);font-size:20px;cursor:pointer}
+.pi-name{font-size:1.35rem;font-weight:500;line-height:1.3;margin-bottom:10px}
+.pi-stars-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
 .pi-stars{color:#F5A623;font-size:14px;letter-spacing:1px}
-.pi-rcount{font-size:13px;color:var(--muted);text-decoration:underline;cursor:pointer}
-
-.pi-sold-badge{display:inline-flex;align-items:center;background:var(--bg);border-radius:40px;padding:4px 12px;font-size:12px;font-weight:500;margin-bottom:16px;color:var(--text)}
-
-.pi-divider{border:none;border-top:1px solid var(--border);margin:16px 0}
-
-.pi-price-row{display:flex;align-items:baseline;gap:10px;margin-bottom:4px}
-.pi-price{font-size:1.5rem;font-weight:600;color:var(--text)}
-.pi-price-orig{font-size:1rem;color:var(--muted);text-decoration:line-through}
-.pi-discount{background:#E8F5E9;color:#2E7D32;border-radius:40px;padding:2px 8px;font-size:12px;font-weight:600}
-
-.pi-section-label{font-size:12px;font-weight:600;color:var(--text);letter-spacing:.03em;margin-bottom:10px;margin-top:16px}
-
-/* Buy options */
-.buy-option{border:1.5px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:border-color .15s}
-.buy-option:hover{border-color:#999}
-.buy-option.selected{border-color:var(--text)}
-.buy-option-left{display:flex;align-items:center;gap:10px}
-.buy-radio{width:18px;height:18px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.buy-option.selected .buy-radio{border-color:var(--text);background:var(--text)}
-.buy-option.selected .buy-radio::after{content:'';width:7px;height:7px;border-radius:50%;background:#fff;display:block}
-.buy-option-label{font-size:14px;font-weight:500}
-.buy-option-sub{font-size:12px;color:var(--muted);margin-top:1px}
-.buy-option-price{font-size:14px;font-weight:600}
-
-/* Action buttons */
-.pi-actions{display:flex;flex-direction:column;gap:8px;margin-top:16px}
-.pi-btn{width:100%;padding:14px;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:opacity .15s;text-decoration:none;text-align:center;display:block}
-.pi-btn-primary{background:var(--text);color:var(--white);border:none}
-.pi-btn-primary:hover{opacity:.85}
-.pi-btn-secondary{background:#5C6BC0;color:var(--white);border:none}
-.pi-btn-secondary:hover{opacity:.85}
-
-/* Wishlist + share */
-.pi-social-row{display:flex;justify-content:center;gap:2rem;margin-top:16px;padding-top:16px;border-top:1px solid var(--border)}
-.pi-social-btn{display:flex;align-items:center;gap:6px;background:none;border:none;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--muted);cursor:pointer;transition:color .15s}
-.pi-social-btn:hover{color:var(--text)}
-
-/* Pros section */
-.pi-pros{list-style:none;display:flex;flex-direction:column;gap:6px;margin-bottom:0}
-.pi-pros li{font-size:13px;color:var(--text);padding-left:1.4rem;position:relative;line-height:1.5}
+.pi-rcount{font-size:13px;color:var(--muted)}
+.pi-badge{display:inline-flex;align-items:center;background:var(--bg);border-radius:40px;padding:4px 12px;font-size:12px;font-weight:500;margin-bottom:14px}
+.pi-hr{border:none;border-top:1px solid var(--border);margin:14px 0}
+.pi-price{font-size:1.5rem;font-weight:600;margin-bottom:14px}
+.pi-desc{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:14px}
+.pi-sec{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;margin-top:14px}
+.pi-pros{list-style:none;display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.pi-pros li{font-size:13px;padding-left:1.4rem;position:relative;line-height:1.5}
 .pi-pros li::before{content:'✓';position:absolute;left:0;color:var(--gold)}
-
-/* How to use */
-.pi-how-to{background:var(--bg);border-radius:12px;padding:14px 16px;font-size:13px;color:var(--muted);line-height:1.7}
-
-/* VIDEO SECTION */
+.pi-how{background:var(--bg);border-radius:12px;padding:14px;font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:14px}
+.pi-actions{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.pi-btn{width:100%;padding:14px;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;text-align:center;display:block;border:none;transition:opacity .15s}
+.pi-btn:hover{opacity:.85}
+.pi-btn-dark{background:var(--text);color:#fff}
+.pi-btn-blue{background:#5C6BC0;color:#fff}
+.pi-social{display:flex;justify-content:center;gap:2rem;margin-top:16px;padding-top:16px;border-top:1px solid var(--border)}
+.pi-social button{display:flex;align-items:center;gap:6px;background:none;border:none;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--muted);cursor:pointer}
 .video-section{padding:1.5rem;border-top:1px solid var(--border)}
-.video-section-title{font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:1rem}
-.video-placeholder{background:var(--bg);border:1.5px dashed var(--border);border-radius:var(--radius);height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--muted)}
-.video-icon{font-size:2.5rem}
-.video-label{font-size:14px;font-weight:500}
-.video-sub{font-size:12px}
+.video-title{font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:1rem}
+.video-ph{background:var(--bg);border:1.5px dashed var(--border);border-radius:var(--radius);height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--muted)}
 
-/* ══════════════ RESPONSIVE ══════════════ */
-@media(max-width:900px){
-  .product-layout{grid-template-columns:1fr}
-  .product-info{border-left:none;border-top:1px solid var(--border)}
-  .product-gallery{position:static}
-}
-@media(max-width:700px){
-  :root{--sidebar:0px}
-  .sidebar{display:none}
-  .topbar{padding:0 1rem}
-  .hero{flex-direction:column;padding:1.5rem 1rem}
-  .hero-stats{justify-content:center}
-  .cat-bar{padding:0 1rem}
-  .home-content{padding:1rem}
-  .product-grid{grid-template-columns:repeat(2,1fr);gap:10px}
-  .card-hero{height:160px}
-  .back-bar{top:60px}
-}
+/* RESPONSIVE */
+@media(max-width:900px){.product-layout{grid-template-columns:1fr}.product-info{border-left:none;border-top:1px solid var(--border)}.product-gallery{position:static}}
+@media(max-width:700px){:root{--sidebar:0px}.sidebar{display:none}.topbar{padding:0 1rem}.home-content{padding:1rem}.product-grid{grid-template-columns:repeat(2,1fr);gap:10px}.card-hero{height:160px}.hero{height:320px}.hero-brand{font-size:clamp(3rem,16vw,5rem)}.panel{width:100vw}.cat-bar{padding:0 1rem}}
 </style>
 </head>
 <body>
 
-<!-- SIDEBAR -->
 <aside class="sidebar">
   <span class="logo-mark" onclick="showHome()">NACRÉ</span>
-  <button class="sicon active" id="sb-all" onclick="filterCat('all',this)" title="All">🏠</button>
+  <button class="sicon active" onclick="filterCat('all',this)" title="All">🏠</button>
   <button class="sicon" onclick="filterCat('skincare',this)" title="Skincare">✨</button>
   <button class="sicon" onclick="filterCat('makeup',this)" title="Makeup">💄</button>
   <button class="sicon" onclick="filterCat('fragrance',this)" title="Fragrance">🌸</button>
@@ -226,29 +166,27 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);dis
   <a href="https://instagram.com/maisonglow412" target="_blank" class="sicon" style="margin-top:auto" title="Instagram">📷</a>
 </aside>
 
-<!-- MAIN -->
 <div class="main">
-
-  <!-- TOPBAR (always visible) -->
   <header class="topbar">
-    <div class="search-wrap">
+    <div class="search-wrap" id="topbar-search" style="display:none">
       <span class="search-icon">🔍</span>
       <input type="text" id="search" placeholder="Search beauty products...">
     </div>
     <a href="https://instagram.com/maisonglow412" target="_blank" class="follow-btn">📷 @maisonglow412</a>
   </header>
 
-  <!-- ══ HOME VIEW ══ -->
+  <!-- HOME VIEW -->
   <div id="home-view">
-    <div class="hero-shop">
+
+    <!-- HERO -->
+    <div class="hero">
       <div class="hero-floats" id="hero-floats"></div>
       <div class="hero-center">
         <div class="hero-brand">nacré</div>
-        <p class="hero-tagline">Your luxury beauty edit</p>
+        <div class="hero-sub">Your luxury beauty edit</div>
       </div>
       <div class="hero-search">
-        <span class="hero-search-icon">🔍</span>
-        <input type="text" placeholder="What beauty product are you looking for?" oninput="document.getElementById('search').value=this.value;applyFilters()">
+        <input type="text" placeholder="What are you shopping for today?" oninput="document.getElementById('search').value=this.value;applyFilters()">
         <button class="hero-search-btn">→</button>
       </div>
     </div>
@@ -267,408 +205,238 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);dis
 
     <div class="home-content">
       <div id="container"></div>
-      <div class="no-results" id="no-results">
-        <h3>No products found</h3>
-        <p>Try a different search or category</p>
-      </div>
+      <div class="no-results" id="no-results"><h3>No products found</h3><p>Try a different search or category</p></div>
     </div>
   </div>
 
-  <!-- ══ PRODUCT DETAIL VIEW ══ -->
+  <!-- PRODUCT DETAIL VIEW -->
   <div id="product-view">
     <div class="back-bar">
       <button class="back-btn" onclick="showHome()">← Back</button>
-      <span class="back-breadcrumb" id="breadcrumb"></span>
+      <span class="back-crumb" id="breadcrumb"></span>
     </div>
-
     <div class="product-layout">
-      <!-- LEFT: gallery -->
       <div>
         <div class="product-gallery">
           <div class="thumb-strip" id="thumb-strip"></div>
-          <div class="main-img-wrap" id="main-img-wrap">
-            <div class="img-indicators" id="img-indicators"></div>
-          </div>
+          <div class="main-img-wrap" id="main-img-wrap"></div>
         </div>
       </div>
-
-      <!-- RIGHT: info -->
       <div class="product-info" id="product-info"></div>
     </div>
-
-    <!-- VIDEO SECTION -->
     <div class="video-section">
-      <div class="video-section-title">Product Videos</div>
-      <div class="video-placeholder">
-        <div class="video-icon">🎬</div>
-        <div class="video-label">Video coming soon</div>
-        <div class="video-sub">Product videos are being created</div>
-      </div>
+      <div class="video-title">Product Videos</div>
+      <div class="video-ph"><div style="font-size:2.5rem">🎬</div><div style="font-size:14px;font-weight:500">Video coming soon</div><div style="font-size:12px">Product videos are being created</div></div>
     </div>
   </div>
-
-</div><!-- /main -->
+</div>
 
 <script>
-// ── STATE ──
-let allProducts = [], currentCat = 'all', currentProductIdx = 0;
-window._filtered = [];
-let sliderInterval = null;
-let currentImgIdx = 0;
-let currentImgs = [];
+let allProducts=[], currentCat='all';
+window._filtered=[];
+let sliderTimer=null, imgIdx=0, imgList=[];
 
-// Browser back/forward button support
-window.addEventListener('popstate', function(e) {
-  if (e.state && e.state.view === 'product') {
-    showProduct(e.state.idx, false);
-  } else {
-    showHome(false);
-  }
+const CATS={skincare:'Skincare',makeup:'Makeup',fragrance:'Fragrance',haircare:'Haircare',body_care:'Body Care',nail_care:'Nail Care',beauty_tools:'Beauty Tools',wellness_beauty:'Wellness'};
+
+function stars(r){const n=Math.round(parseFloat(r)||4);return'★'.repeat(n)+'☆'.repeat(5-n)}
+
+// Browser back support
+window.addEventListener('popstate',e=>{
+  if(e.state&&e.state.view==='product') showProduct(e.state.idx,false);
+  else showHome(false);
 });
 
-const CATS = {
-  skincare:'Skincare', makeup:'Makeup', fragrance:'Fragrance',
-  haircare:'Haircare', body_care:'Body Care', nail_care:'Nail Care',
-  beauty_tools:'Beauty Tools', wellness_beauty:'Wellness'
-};
-
-// ── IMAGE PROXY ──
-// wsrv.nl proxies any image URL, bypasses hotlink protection, caches globally
-function proxyImg(url, w=400) {
-  if (!url) return '';
-  if (url.startsWith('images/')) return url;
-  if (url.startsWith('http')) return url;
-  return '';
+function showHome(push){
+  clearInterval(sliderTimer);
+  document.getElementById('home-view').style.display='flex';
+  document.getElementById('product-view').style.display='none';
+  document.getElementById('topbar-search').style.display='none';
+  window.scrollTo(0,0);
+  if(push!==false) history.pushState({view:'home'},'',location.pathname);
 }
 
-function stars(r) {
-  const n = Math.round(parseFloat(r) || 4);
-  return '★'.repeat(n) + '☆'.repeat(5 - n);
-}
-
-// Get all downloaded images for a product
-function getImageSet(p) {
-  const imgs = [];
-  const cat = (p.category || '').replace(/\s+/g, '_');
-  const base = p.image_url || '';
-  if (!base) return [];
-  
-  // Add primary image
+function getImgs(p){
+  const imgs=[];
+  const base=p.image_url||'';
+  if(!base) return imgs;
   imgs.push(base);
-  
-  // Check for numbered variants (-1, -2, -3)
-  const baseNoExt = base.replace(/\.jpg$/, '');
-  const baseNoNum = baseNoExt.replace(/-\d+$/, '');
-  for (let i = 1; i <= 3; i++) {
-    imgs.push(baseNoNum + '-' + i + '.jpg');
-  }
-  
+  const noExt=base.replace(/\.jpg$/,'');
+  const noNum=noExt.replace(/-\d+$/,'');
+  for(let i=1;i<=3;i++) imgs.push(noNum+'-'+i+'.jpg');
   return imgs;
 }
 
-// ── HOME VIEW ──
-function showHome(push) {
-  clearInterval(sliderInterval);
-  document.getElementById('home-view').style.display = 'flex';
-  document.getElementById('product-view').style.display = 'none';
-  document.getElementById('search').style.display = '';
-  window.scrollTo(0, 0);
-}
-
-function showProduct(idx, push) {
-  clearInterval(sliderInterval);
-  const p = window._filtered[idx];
-  if (!p) return;
-  currentProductIdx = idx;
-  currentImgIdx = 0;
-  currentImgs = getImageSet(p);
-
-  // Switch views
-  document.getElementById('home-view').style.display = 'none';
-  document.getElementById('product-view').style.display = 'flex';
-  window.scrollTo(0, 0);
-  if (push !== false) history.pushState({view:'product', idx}, '', '#product');
-
-  // Breadcrumb
-  const cat = CATS[(p.category||'').replace(/\s+/g,'_')] || p.category || '';
-  document.getElementById('breadcrumb').textContent = `${cat} › ${p.name}`;
-
-  // Build gallery
+function showProduct(idx,push){
+  clearInterval(sliderTimer);
+  const p=window._filtered[idx];
+  if(!p) return;
+  imgIdx=0;
+  imgList=getImgs(p);
+  document.getElementById('home-view').style.display='none';
+  document.getElementById('product-view').style.display='flex';
+  document.getElementById('topbar-search').style.display='flex';
+  window.scrollTo(0,0);
+  if(push!==false) history.pushState({view:'product',idx},'','#product');
+  const catKey=(p.category||'').replace(/\s+/g,'_');
+  const catLabel=CATS[catKey]||p.category||'';
+  document.getElementById('breadcrumb').innerHTML=
+    `<span style="cursor:pointer;text-decoration:underline;color:var(--muted)" onclick="filterCat('${catKey}',null)">${catLabel}</span>`+
+    ` › `+
+    `<span style="color:var(--text)">${p.name}</span>`;
   buildGallery(p);
-
-  // Build info panel
-  buildProductInfo(p);
-
-  // Start auto-slide
-  if (currentImgs.length > 1) {
-    sliderInterval = setInterval(() => {
-      currentImgIdx = (currentImgIdx + 1) % currentImgs.length;
-      updateMainImg();
-    }, 3500);
-  }
+  buildInfo(p);
+  if(imgList.length>1) sliderTimer=setInterval(()=>{imgIdx=(imgIdx+1)%imgList.length;updateMainImg();},3500);
 }
 
-function buildGallery(p) {
-  const thumbStrip = document.getElementById('thumb-strip');
-  const mainWrap = document.getElementById('main-img-wrap');
-  const indicators = document.getElementById('img-indicators');
-
-  const l = (p.name || 'N')[0].toUpperCase();
-
-  if (!currentImgs.length) {
-    thumbStrip.innerHTML = '';
-    mainWrap.innerHTML = `<div class="main-img-ph">${l}</div><div class="img-indicators"></div>`;
+function buildGallery(p){
+  const l=(p.name||'N')[0].toUpperCase();
+  const ts=document.getElementById('thumb-strip');
+  const mw=document.getElementById('main-img-wrap');
+  if(!imgList.length){
+    ts.innerHTML='';
+    mw.innerHTML=`<div class="main-img-ph">${l}</div>`;
     return;
   }
-
-  // Thumbnails
-  thumbStrip.innerHTML = currentImgs.map((src, i) => `
-    <div class="thumb-item ${i===0?'active':''}" onclick="setImg(${i})">
-      <img src="${src}" alt="Product image ${i+1}" onerror="this.outerHTML='<div class=thumb-item-ph>${l}</div>'">
-    </div>`).join('');
-
-  // Main image
-  mainWrap.innerHTML = `
-    <img id="main-img" src="${currentImgs[0]}" alt="${p.name}" onerror="this.outerHTML='<div class=main-img-ph>${l}</div>'">
-    <div class="img-indicators" id="img-indicators">
-      ${currentImgs.map((_,i)=>`<div class="img-dot ${i===0?'active':''}" onclick="setImg(${i})"></div>`).join('')}
-    </div>`;
+  ts.innerHTML=imgList.map((src,i)=>`<div class="thumb-item${i===0?' active':''}" onclick="setImg(${i})"><img src="${src}" onerror="this.outerHTML='<div class=thumb-item-ph>${l}</div>'"></div>`).join('');
+  mw.innerHTML=`<img id="main-img" src="${imgList[0]}" style="width:100%;height:100%;object-fit:cover;transition:opacity .3s" onerror="this.outerHTML='<div class=main-img-ph>${l}</div>'">`+
+    `<div class="img-dots" id="img-dots">${imgList.map((_,i)=>`<div class="img-dot${i===0?' active':''}" onclick="setImg(${i})"></div>`).join('')}</div>`;
 }
 
-function setImg(idx) {
-  clearInterval(sliderInterval);
-  currentImgIdx = idx;
+function setImg(i){
+  clearInterval(sliderTimer);
+  imgIdx=i;
   updateMainImg();
-  // Restart auto-slide
-  if (currentImgs.length > 1) {
-    sliderInterval = setInterval(() => {
-      currentImgIdx = (currentImgIdx + 1) % currentImgs.length;
-      updateMainImg();
-    }, 3500);
-  }
+  if(imgList.length>1) sliderTimer=setInterval(()=>{imgIdx=(imgIdx+1)%imgList.length;updateMainImg();},3500);
 }
 
-function updateMainImg() {
-  const img = document.getElementById('main-img');
-  if (img) {
-    img.style.opacity = '0';
-    setTimeout(() => {
-      img.src = currentImgs[currentImgIdx];
-      img.style.opacity = '1';
-    }, 150);
-  }
-  // Update thumb active state
-  document.querySelectorAll('.thumb-item').forEach((t,i) => t.classList.toggle('active', i===currentImgIdx));
-  document.querySelectorAll('.img-dot').forEach((d,i) => d.classList.toggle('active', i===currentImgIdx));
+function updateMainImg(){
+  const img=document.getElementById('main-img');
+  if(img){img.style.opacity='0';setTimeout(()=>{img.src=imgList[imgIdx];img.style.opacity='1';},150);}
+  document.querySelectorAll('.thumb-item').forEach((t,i)=>t.classList.toggle('active',i===imgIdx));
+  document.querySelectorAll('.img-dot').forEach((d,i)=>d.classList.toggle('active',i===imgIdx));
 }
 
-function buildProductInfo(p) {
-  const l = (p.brand || p.name || 'N')[0].toUpperCase();
-  const shopUrl  = p.sephora_url || p.amazon_url || p.affiliate_url || '#';
-  const cartUrl  = p.amazon_url  || p.sephora_url || p.affiliate_url || '#';
-  const pros = Array.isArray(p.pros) ? p.pros : [];
-
-  document.getElementById('product-info').innerHTML = `
-    <div class="pi-brand-row">
-      <div class="pi-brand-avatar">${l}</div>
-      <div class="pi-brand-name">${p.brand || ''}</div>
-      <div class="pi-dots">···</div>
-    </div>
-
-    <div class="pi-name">${p.name || ''}</div>
-
-    <div class="pi-rating-row">
-      <span class="pi-stars">${stars(p.rating)}</span>
-      <span class="pi-rcount">${p.rating || ''} ${p.reviews ? `(${p.reviews})` : ''}</span>
-    </div>
-
-    ${p.badge ? `<div class="pi-sold-badge">🔥 ${p.badge}</div>` : '<div class="pi-sold-badge">✨ Curated Pick</div>'}
-
-    <hr class="pi-divider">
-
-    <div class="pi-price-row">
-      <span class="pi-price">${p.price || 'View price'}</span>
-    </div>
-
-    ${p.review_summary ? `<p style="font-size:13px;color:var(--muted);line-height:1.7;margin:12px 0">${p.review_summary}</p>` : ''}
-
-    <hr class="pi-divider">
-
-    <div class="pi-section-label">One time purchase</div>
-    <div class="buy-option selected">
-      <div class="buy-option-left">
-        <div class="buy-radio"></div>
-        <div>
-          <div class="buy-option-label">Buy once</div>
-          <div class="buy-option-sub">Standard purchase</div>
-        </div>
-      </div>
-      <div class="buy-option-price">${p.price || '—'}</div>
-    </div>
-
+function buildInfo(p){
+  const l=(p.brand||p.name||'N')[0].toUpperCase();
+  const shopUrl=p.sephora_url||p.amazon_url||p.affiliate_url||'#';
+  const cartUrl=p.amazon_url||p.sephora_url||p.affiliate_url||'#';
+  const pros=Array.isArray(p.pros)?p.pros:[];
+  document.getElementById('product-info').innerHTML=`
+    <div class="pi-brand-row"><div class="pi-avatar">${l}</div><div class="pi-brand">${p.brand||''}</div><div class="pi-dots">···</div></div>
+    <div class="pi-name">${p.name||''}</div>
+    <div class="pi-stars-row"><span class="pi-stars">${stars(p.rating)}</span><span class="pi-rcount">${p.rating||''} ${p.reviews?`(${p.reviews})`:''}</span></div>
+    <div class="pi-badge">${p.badge?'🔥 '+p.badge:'✨ Curated Pick'}</div>
+    <hr class="pi-hr">
+    <div class="pi-price">${p.price||'View price →'}</div>
+    ${p.review_summary?`<div class="pi-desc">${p.review_summary}</div>`:''}
+    ${pros.length?`<div class="pi-sec">What we love</div><ul class="pi-pros">${pros.map(x=>`<li>${x}</li>`).join('')}</ul>`:''}
+    ${p.how_to_use?`<div class="pi-sec">How to use</div><div class="pi-how">${p.how_to_use}</div>`:''}
+    <hr class="pi-hr">
+    <div class="pi-sec">Where to buy</div>
     <div class="pi-actions">
-      <a href="${shopUrl}" target="_blank" rel="noopener" class="pi-btn pi-btn-primary">Buy now — Sephora</a>
-      <a href="${cartUrl}" target="_blank" rel="noopener" class="pi-btn pi-btn-secondary">Add to cart — Amazon</a>
+      <a href="${shopUrl}" target="_blank" rel="noopener" class="pi-btn pi-btn-dark">Buy now — Sephora</a>
+      <a href="${cartUrl}" target="_blank" rel="noopener" class="pi-btn pi-btn-blue">Add to cart — Amazon</a>
     </div>
-
-    <div class="pi-social-row">
-      <button class="pi-social-btn">♡ Save</button>
-      <button class="pi-social-btn">↗ Share</button>
-    </div>
-
-    ${pros.length ? `<hr class="pi-divider"><div class="pi-section-label">What we love</div><ul class="pi-pros">${pros.map(x=>`<li>${x}</li>`).join('')}</ul>` : ''}
-    ${p.how_to_use ? `<hr class="pi-divider"><div class="pi-section-label">How to use</div><div class="pi-how-to">${p.how_to_use}</div>` : ''}
-    <div style="height:2rem"></div>
-  `;
+    <div class="pi-social"><button>♡ Save</button><button>↗ Share</button></div>
+    <div style="height:2rem"></div>`;
 }
 
-// ── HOME CARD ──
-function buildCard(p, idx) {
-  const heroSrc = proxyImg(p.image_url, 400);
-  const l = (p.name || 'N')[0].toUpperCase();
+function buildHeroFloats(products){
+  const el=document.getElementById('hero-floats');
+  if(!el) return;
+  const picks=products.filter(p=>p.image_url).slice(0,6);
+  if(!picks.length) return;
+  // positions: left%, top%, width, height, animDuration, animDelay, showLabel
+  const pos=[
+    ['2%','8%',150,180,'5s','0s',true],
+    ['16%','58%',115,135,'6s','1.8s',false],
+    ['64%','6%',145,170,'5.5s','0.6s',true],
+    ['79%','50%',125,150,'6.5s','2s',false],
+    ['38%','4%',100,120,'4.8s','1.2s',false],
+    ['51%','62%',110,130,'5.8s','0.4s',false],
+  ];
+  el.innerHTML=picks.map((p,i)=>{
+    const[left,top,w,h,dur,del,label]=pos[i];
+    const l=(p.name||'N')[0].toUpperCase();
+    const img=p.image_url?`<img src="${p.image_url}" style="width:100%;height:${h}px;object-fit:cover;display:block" onerror="this.outerHTML='<div class=fc-ph style=height:${h}px>${l}</div>'">`:`<div class="fc-ph" style="height:${h}px">${l}</div>`;
+    const lbl=label?`<div class="fc-info"><div class="fc-name">${p.name||''}</div><div class="fc-stars">★★★★★ ${p.rating||''}</div></div>`:'';
+    return`<div class="fc" style="left:${left};top:${top};width:${w}px;animation:bob ${dur} ease-in-out ${del} infinite">${img}${lbl}</div>`;
+  }).join('');
+}
 
-  const heroImg = heroSrc
-    ? `<img src="${heroSrc}" alt="${p.name}" loading="lazy" onerror="this.outerHTML='<div class=card-hero-ph><div class=card-hero-letter>${l}</div></div>'">`
-    : `<div class="card-hero-ph"><div class="card-hero-letter">${l}</div></div>`;
-
-  // Thumbnails (3 versions of same image at different crops)
-  const thumbSrcs = heroSrc ? [proxyImg(p.image_url,100), proxyImg(p.image_url,120), proxyImg(p.image_url,80)] : [];
-  const thumbs = thumbSrcs.map(src => `<div class="card-thumb"><img src="${src}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=card-thumb-ph>${l}</div>'"></div>`).join('');
-
-  return `
-  <div class="card" onclick="showProduct(${idx})">
-    <div class="card-hero">
-      ${heroImg}
-      <div class="card-overlay-top">
-        <div class="card-brand-name">${p.brand || ''}</div>
-        <div class="card-rating-pill">
-          <span class="card-star">★</span>
-          <span>${p.rating || '4.5'} ${p.reviews ? `(${p.reviews})` : ''}</span>
-        </div>
-      </div>
-      ${p.badge ? `<div class="card-badge">${p.badge}</div>` : ''}
+function buildCard(p,idx){
+  const l=(p.name||'N')[0].toUpperCase();
+  const hero=p.image_url?`<img src="${p.image_url}" alt="${p.name}" loading="lazy" onerror="this.outerHTML='<div class=card-hero-ph><div class=card-hero-letter>${l}</div></div>'">`:`<div class="card-hero-ph"><div class="card-hero-letter">${l}</div></div>`;
+  // thumbs from numbered variants
+  const noExt=(p.image_url||'').replace(/\.jpg$/,'');
+  const noNum=noExt.replace(/-\d+$/,'');
+  const thumbs=p.image_url?[1,2,3].map(n=>`<div class="card-thumb"><img src="${noNum}-${n}.jpg" loading="lazy" onerror="this.parentElement.innerHTML='<div class=card-thumb-ph>${l}</div>'"></div>`).join(''):'';
+  return`<div class="card" onclick="showProduct(${idx})">
+    <div class="card-hero">${hero}
+      <div class="card-overlay"><div class="card-brand-lbl">${p.brand||''}</div><div class="card-rating-pill"><span style="color:#F5A623">★</span><span>${p.rating||'4.5'} ${p.reviews?`(${p.reviews})`:''}</span></div></div>
+      ${p.badge?`<div class="card-badge">${p.badge}</div>`:''}
     </div>
-    ${thumbs ? `<div class="card-thumbs">${thumbs}</div>` : ''}
-    <div class="card-body">
-      <div class="card-name">${p.name || ''}</div>
-      <button class="card-view-btn">View Product</button>
-    </div>
+    ${thumbs?`<div class="card-thumbs">${thumbs}</div>`:''}
+    <div class="card-body"><div class="card-name">${p.name||''}</div><button class="card-view-btn">View Product</button></div>
   </div>`;
 }
 
-// ── RENDER ──
-function showSkeletons() {
-  document.getElementById('container').innerHTML =
-    `<div class="product-grid">${Array(8).fill(`<div class="skel"><div class="skel-hero"></div><div class="skel-body"><div class="skel-line s"></div><div class="skel-line"></div><div class="skel-line b"></div></div></div>`).join('')}</div>`;
-}
+function showSkels(){document.getElementById('container').innerHTML=`<div class="product-grid">${Array(6).fill(`<div class="skel"><div class="skel-hero"></div><div class="skel-body"><div class="skel-line s"></div><div class="skel-line"></div><div class="skel-line b"></div></div></div>`).join('')}</div>`;}
 
-function render(products) {
-  window._filtered = products;
-  const c = document.getElementById('container');
-  const nr = document.getElementById('no-results');
-  if (!products.length) { c.innerHTML=''; nr.style.display='block'; return; }
-  nr.style.display = 'none';
-
-  const groups = {};
-  products.forEach(p => {
-    const k = (p.category||'other').replace(/\s+/g,'_');
-    if (!groups[k]) groups[k] = [];
-    groups[k].push(p);
-  });
-
-  let globalIdx = 0;
-  c.innerHTML = Object.entries(groups).map(([cat, items]) => {
-    const label = CATS[cat] || cat.replace(/_/g,' ');
-    const cards = items.map(p => buildCard(p, globalIdx++)).join('');
-    return `<div class="section">
-      <div class="section-head">
-        <h2 class="section-title">${label}</h2>
-        <span class="section-count">${items.length} picks</span>
-      </div>
-      <div class="product-grid">${cards}</div>
-    </div>`;
+function render(products){
+  window._filtered=products;
+  const c=document.getElementById('container');
+  const nr=document.getElementById('no-results');
+  if(!products.length){c.innerHTML='';nr.style.display='block';return;}
+  nr.style.display='none';
+  const groups={};
+  products.forEach(p=>{const k=(p.category||'other').replace(/\s+/g,'_');if(!groups[k])groups[k]=[];groups[k].push(p);});
+  let gi=0;
+  c.innerHTML=Object.entries(groups).map(([cat,items])=>{
+    const lbl=CATS[cat]||cat.replace(/_/g,' ');
+    const cards=items.map(p=>buildCard(p,gi++)).join('');
+    return`<div class="section"><div class="section-head"><h2 class="section-title">${lbl}</h2><span class="section-count">${items.length} picks</span></div><div class="product-grid">${cards}</div></div>`;
   }).join('');
-
-  document.getElementById('total-count').textContent = products.length;
 }
 
-function filterCat(cat, btn) {
-  currentCat = cat;
-  document.querySelectorAll('.cat-pill').forEach(b => b.classList.remove('active'));
-  if (btn) btn.classList.add('active');
+function filterCat(cat,btn){
+  currentCat=cat;
+  document.querySelectorAll('.cat-pill').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  // Always go home first, then filter
+  if(document.getElementById('product-view').style.display!=='none'){
+    showHome();
+  }
   applyFilters();
-  if (document.getElementById('product-view').style.display !== 'none') showHome();
 }
 
-function applyFilters() {
-  const q = document.getElementById('search').value.toLowerCase();
-  let f = allProducts;
-  if (currentCat !== 'all') f = f.filter(p => (p.category||'').replace(/\s+/g,'_') === currentCat);
-  if (q) f = f.filter(p => ((p.name||'')+' '+(p.brand||'')+' '+(p.category||'')).toLowerCase().includes(q));
+function applyFilters(){
+  const q=document.getElementById('search').value.toLowerCase();
+  let f=allProducts;
+  if(currentCat!=='all') f=f.filter(p=>(p.category||'').replace(/\s+/g,'_')===currentCat);
+  if(q) f=f.filter(p=>((p.name||'')+' '+(p.brand||'')+' '+(p.category||'')).toLowerCase().includes(q));
   render(f);
 }
 
-// ── LOAD DATA ──
-async function load() {
-  showSkeletons();
-  try {
-    const r = await fetch('./products.json?v=' + Date.now());
-    if (!r.ok) throw new Error('no file');
-    allProducts = await r.json();
-    console.log('Loaded', allProducts.length, 'products');
-  } catch(e) {
-    console.log('Using sample data');
-    allProducts = [
-      {name:"Rare Beauty Soft Pinch Liquid Blush",brand:"Rare Beauty",category:"makeup",rating:4.9,reviews:"15k",image_url:"https://www.sephora.com/productimages/sku/s2312819-main-zoom.jpg",badge:"Best Seller",review_summary:"The blush that broke the internet — buildable, blendable, and impossibly pigmented.",pros:["Long-lasting 8+ hours","Dewy natural finish","Tiny amount goes far"],how_to_use:"Tap a small dot onto cheeks and blend with fingertips.",sephora_url:"https://www.sephora.com/search?keyword=rare+beauty+blush",amazon_url:"https://www.amazon.com/s?k=rare+beauty+soft+pinch+blush",price:"$23"},
-      {name:"Dermalogica Healthy Skin Kit",brand:"Dermalogica",category:"skincare",rating:4.8,reviews:"2.1k",image_url:"https://www.sephora.com/productimages/sku/s2089654-main-zoom.jpg",badge:"Editor's Pick",review_summary:"A complete starter kit delivering real results in 2 weeks.",pros:["Gentle on sensitive skin","Travel-friendly","Dermatologist tested"],how_to_use:"Cleanse morning and night, apply toner, finish with moisturiser.",sephora_url:"https://www.sephora.com/search?keyword=dermalogica",amazon_url:"https://www.amazon.com/s?k=dermalogica+healthy+skin+kit",price:"$45"},
-      {name:"Kayali Vanilla 28 Eau de Parfum",brand:"Kayali",category:"fragrance",rating:4.9,reviews:"1.2k",image_url:"https://www.sephora.com/productimages/sku/s2206069-main-zoom.jpg",badge:"Top Rated",review_summary:"A warm gourmand vanilla that lasts all day and turns heads.",pros:["12-hour longevity","Unisex appeal","Gorgeous bottle"],how_to_use:"Spray on pulse points — wrists, neck, behind ears.",sephora_url:"https://www.sephora.com/search?keyword=kayali+vanilla",price:"$148"},
-      {name:"Olaplex No.3 Hair Perfector",brand:"Olaplex",category:"haircare",rating:4.7,reviews:"12k",image_url:"https://www.sephora.com/productimages/sku/s2215985-main-zoom.jpg",review_summary:"The bond-building treatment that repairs damaged hair from within.",pros:["Repairs broken bonds","All hair types","Salon results at home"],how_to_use:"Apply to damp hair, leave 10 minutes, shampoo as normal.",amazon_url:"https://www.amazon.com/s?k=olaplex+no+3",sephora_url:"https://www.sephora.com/search?keyword=olaplex",price:"$30"},
-      {name:"Charlotte Tilbury Pillow Talk Lipstick",brand:"Charlotte Tilbury",category:"makeup",rating:4.8,reviews:"5.6k",image_url:"https://www.sephora.com/productimages/sku/s1894940-main-zoom.jpg",badge:"Icon",review_summary:"The universally flattering nude-pink that suits every skin tone.",pros:["Universally flattering","Moisturising formula","Iconic packaging"],how_to_use:"Apply directly to lips. Layer for more intensity.",sephora_url:"https://www.sephora.com/search?keyword=charlotte+tilbury+pillow+talk",price:"$38"},
-      {name:"Gisou Honey Infused Hair Oil",brand:"Gisou",category:"haircare",rating:4.6,reviews:"3.4k",image_url:"https://www.sephora.com/productimages/sku/s2295215-main-zoom.jpg",review_summary:"Lightweight hair oil that adds brilliant shine without greasiness.",pros:["Non-greasy formula","Natural honey extract","Smells incredible"],how_to_use:"Apply a few drops to damp or dry hair, mid-lengths to ends.",sephora_url:"https://www.sephora.com/search?keyword=gisou",price:"$47"},
+async function load(){
+  showSkels();
+  try{
+    const r=await fetch('./products.json?v='+Date.now());
+    if(!r.ok) throw new Error();
+    allProducts=await r.json();
+  }catch{
+    allProducts=[
+      {name:"Rare Beauty Soft Pinch Liquid Blush",brand:"Rare Beauty",category:"makeup",rating:4.9,reviews:"15k",image_url:"",badge:"Best Seller",review_summary:"The blush that broke the internet.",pros:["Long-lasting","Dewy finish","Tiny amount goes far"],how_to_use:"Tap a dot onto cheeks and blend.",sephora_url:"https://www.sephora.com/search?keyword=rare+beauty+blush",amazon_url:"https://www.amazon.com/s?k=rare+beauty+blush",price:"$23"},
+      {name:"Dermalogica Healthy Skin Kit",brand:"Dermalogica",category:"skincare",rating:4.8,reviews:"2.1k",image_url:"",badge:"Editor's Pick",review_summary:"Real results in 2 weeks.",pros:["Gentle","Travel-friendly","Dermatologist tested"],how_to_use:"Cleanse, tone, moisturise.",sephora_url:"https://www.sephora.com/search?keyword=dermalogica",price:"$45"},
+      {name:"Kayali Vanilla 28",brand:"Kayali",category:"fragrance",rating:4.9,reviews:"1.2k",image_url:"",badge:"Top Rated",review_summary:"Warm vanilla that lasts all day.",pros:["12-hour longevity","Unisex","Gorgeous bottle"],how_to_use:"Spray on pulse points.",sephora_url:"https://www.sephora.com/search?keyword=kayali+vanilla",price:"$148"},
     ];
   }
   render(allProducts);
   buildHeroFloats(allProducts);
 }
 
-document.getElementById('search').addEventListener('input', applyFilters);
-
-function buildHeroFloats(products) {
-  const container = document.getElementById('hero-floats');
-  if (!container || !products.length) return;
-  
-  const picks = products.filter(p => p.image_url).slice(0, 6);
-  if (!picks.length) return;
-
-  // shop.app style: large cards at edges, smaller ones in middle
-  const positions = [
-    {left:'2%',  top:'8%',  w:150, h:185, rot:'-2deg', delay:'0s',   label:true},
-    {left:'16%', top:'52%', w:120, h:145, rot:'2deg',  delay:'1.8s', label:false},
-    {left:'64%', top:'5%',  w:145, h:175, rot:'1.5deg',delay:'0.6s', label:true},
-    {left:'78%', top:'48%', w:130, h:155, rot:'-1deg', delay:'2.2s', label:false},
-    {left:'36%', top:'2%',  w:105, h:125, rot:'0deg',  delay:'1.2s', label:false},
-    {left:'50%', top:'60%', w:115, h:135, rot:'-1.5deg',delay:'0.4s',label:false},
-  ];
-
-  container.innerHTML = picks.map((p, i) => {
-    const pos = positions[i];
-    const src = p.image_url;
-    const l = (p.name||'N')[0].toUpperCase();
-    const imgHtml = src
-      ? `<img src="${src}" alt="${p.name}" onerror="this.outerHTML='<div class=float-card-ph>${l}</div>'">`
-      : `<div class="float-card-ph">${l}</div>`;
-    const labelHtml = pos.label ? `<div class="float-label"><div class="float-name">${p.name||''}</div><div class="float-stars">★★★★★ ${p.rating||''}</div></div>` : '';
-    return `<div class="float-card" style="left:${pos.left};top:${pos.top};width:${pos.w}px;--rot:${pos.rot};animation-duration:${4+i*0.7}s;animation-delay:${pos.delay}">
-      <div style="height:${pos.h}px;overflow:hidden">${imgHtml}</div>
-      ${labelHtml}
-    </div>`;
-  }).join('');
-}
-
-load().then ? load() : load();
-
-// Override render to also build floats
-const _origLoad = load;
+document.getElementById('search').addEventListener('input',applyFilters);
+load();
 </script>
 </body>
 </html>
