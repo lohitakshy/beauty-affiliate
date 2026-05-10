@@ -3,589 +3,274 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nacré — The Luxury Beauty Edit</title>
-<meta name="description" content="Curated luxury beauty finds. The finest skincare, makeup, fragrance and haircare — reviewed, compared and linked.">
+<title>Nacré — Luxury Beauty Edit</title>
+<meta name="description" content="Curated luxury beauty finds. Skincare, makeup, fragrance and haircare reviewed and linked.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg:       #080807;
-    --bg2:      #111110;
-    --bg3:      #1A1917;
-    --pearl:    #E8E0D0;
-    --pearl2:   #C4B89A;
-    --gold:     #C9A96E;
-    --muted:    #6B6560;
-    --border:   #222120;
-    --white:    #F5F0E8;
-    --radius:   12px;
-  }
+* { box-sizing: border-box; margin: 0; padding: 0 }
+:root {
+  --white:#FFFFFF; --bg:#F7F5F2; --border:#EBEBEB;
+  --text:#1A1A1A; --muted:#888; --gold:#B8860B;
+  --radius:16px; --sidebar:72px;
+}
+body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--text); display:flex; min-height:100vh }
 
-  * { box-sizing: border-box; margin: 0; padding: 0 }
+/* SIDEBAR */
+.sidebar { width:var(--sidebar); background:var(--white); border-right:1px solid var(--border); position:fixed; top:0;left:0;bottom:0; display:flex; flex-direction:column; align-items:center; padding:20px 0; gap:6px; z-index:100 }
+.sidebar-logo { font-family:'Playfair Display',serif; font-size:12px; font-weight:500; letter-spacing:.12em; color:var(--text); writing-mode:vertical-rl; transform:rotate(180deg); margin-bottom:16px; text-decoration:none }
+.nav-icon { width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:18px; cursor:pointer; transition:background .15s; color:var(--muted); text-decoration:none; border:none; background:transparent }
+.nav-icon:hover,.nav-icon.active { background:var(--bg); color:var(--text) }
 
-  body {
-    background: var(--bg);
-    color: var(--pearl);
-    font-family: 'Outfit', sans-serif;
-    font-weight: 300;
-    min-height: 100vh;
-    cursor: default;
-  }
+/* MAIN */
+.main { margin-left:var(--sidebar); flex:1; display:flex; flex-direction:column }
 
-  /* ── NAV ── */
-  nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(8,8,7,.85);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 2.5rem;
-    height: 60px;
-  }
+/* TOPBAR */
+.topbar { background:var(--white); border-bottom:1px solid var(--border); padding:0 2rem; height:64px; display:flex; align-items:center; gap:16px; position:sticky; top:0; z-index:50 }
+.search-box { flex:1; max-width:560px; position:relative }
+.search-box input { width:100%; background:var(--bg); border:1px solid var(--border); border-radius:40px; padding:11px 20px 11px 44px; font-family:'DM Sans',sans-serif; font-size:14px; color:var(--text); outline:none; transition:border-color .2s }
+.search-box input:focus { border-color:#999 }
+.search-box input::placeholder { color:var(--muted) }
+.search-icon { position:absolute; left:16px; top:50%; transform:translateY(-50%); color:var(--muted); font-size:16px; pointer-events:none }
+.insta-btn { display:flex; align-items:center; gap:8px; background:var(--text); color:var(--white); border:none; border-radius:40px; padding:9px 18px; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:500; cursor:pointer; text-decoration:none; margin-left:auto; transition:opacity .15s }
+.insta-btn:hover { opacity:.85 }
 
-  .logo {
-    font-family: 'Cormorant', serif;
-    font-size: 1.6rem;
-    font-weight: 300;
-    letter-spacing: .15em;
-    color: var(--white);
-    text-decoration: none;
-  }
+/* HERO */
+.hero-banner { background:var(--white); border-bottom:1px solid var(--border); padding:3rem 2rem; display:flex; align-items:center; justify-content:space-between; gap:2rem }
+.hero-text h1 { font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,3.5rem); font-weight:400; line-height:1.1; margin-bottom:.75rem }
+.hero-text h1 em { font-style:italic; color:var(--gold) }
+.hero-text p { font-size:15px; color:var(--muted); max-width:420px; line-height:1.7 }
+.hero-stats { display:flex; gap:2rem; flex-shrink:0 }
+.stat { text-align:center }
+.stat-num { font-family:'Playfair Display',serif; font-size:2rem; font-weight:500 }
+.stat-label { font-size:12px; color:var(--muted); margin-top:2px }
 
-  .logo span { color: var(--gold); }
+/* CATEGORY BAR */
+.cat-bar { background:var(--white); border-bottom:1px solid var(--border); padding:0 2rem; display:flex; align-items:center; gap:6px; overflow-x:auto; scrollbar-width:none; height:56px }
+.cat-bar::-webkit-scrollbar { display:none }
+.cat-pill { display:flex; align-items:center; gap:6px; white-space:nowrap; padding:7px 16px; border-radius:40px; border:1px solid var(--border); background:transparent; font-family:'DM Sans',sans-serif; font-size:13px; color:var(--muted); cursor:pointer; transition:all .15s; flex-shrink:0 }
+.cat-pill:hover { border-color:#999; color:var(--text) }
+.cat-pill.active { background:var(--text); border-color:var(--text); color:var(--white) }
 
-  .nav-right {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-  }
+/* CONTENT */
+.content { padding:2rem }
+.section { margin-bottom:3rem }
+.section-head { display:flex; align-items:baseline; justify-content:space-between; margin-bottom:1.25rem }
+.section-title { font-family:'Playfair Display',serif; font-size:1.4rem; font-weight:400 }
+.section-count { font-size:13px; color:var(--muted) }
 
-  .search-wrap {
-    position: relative;
-  }
+/* GRID */
+.product-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:16px }
 
-  #search {
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: 40px;
-    padding: 8px 16px 8px 36px;
-    color: var(--pearl);
-    font-family: 'Outfit', sans-serif;
-    font-size: 13px;
-    font-weight: 300;
-    width: 220px;
-    outline: none;
-    transition: border-color .2s, width .3s;
-  }
+/* CARD */
+.product-card { background:var(--white); border-radius:var(--radius); overflow:hidden; border:1px solid var(--border); transition:box-shadow .2s,transform .2s; cursor:pointer; position:relative }
+.product-card:hover { box-shadow:0 8px 32px rgba(0,0,0,.08); transform:translateY(-2px) }
+.card-img { aspect-ratio:1; background:var(--bg); overflow:hidden; position:relative }
+.card-img img { width:100%; height:100%; object-fit:cover; transition:transform .4s }
+.product-card:hover .card-img img { transform:scale(1.05) }
+.img-placeholder { width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; background:linear-gradient(135deg,#f5f0e8 0%,#ede8e0 100%) }
+.p-initial { font-family:'Playfair Display',serif; font-size:3rem; color:#C4B89A; font-style:italic }
+.p-name { font-size:11px; color:#B0A898; text-align:center; padding:0 1rem; line-height:1.4 }
+.card-badge { position:absolute; top:10px; left:10px; background:var(--white); border-radius:40px; padding:3px 10px; font-size:10px; font-weight:500; color:var(--gold); border:1px solid rgba(184,134,11,.2) }
+.wishlist { position:absolute; top:10px; right:10px; width:32px; height:32px; background:var(--white); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px; border:1px solid var(--border); cursor:pointer; opacity:0; transition:opacity .2s }
+.product-card:hover .wishlist { opacity:1 }
+.card-body { padding:14px 16px }
+.card-brand { font-size:11px; font-weight:500; color:var(--muted); letter-spacing:.04em; text-transform:uppercase; margin-bottom:4px }
+.card-name { font-size:14px; color:var(--text); line-height:1.4; margin-bottom:8px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden }
+.card-rating { display:flex; align-items:center; gap:5px; margin-bottom:12px }
+.stars { color:#F5A623; font-size:12px; letter-spacing:1px }
+.rating-count { font-size:11px; color:var(--muted) }
+.card-actions { display:grid; grid-template-columns:1fr auto; gap:8px }
+.btn-shop { background:var(--text); color:var(--white); border:none; border-radius:10px; padding:10px; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:500; cursor:pointer; text-decoration:none; text-align:center; transition:background .15s }
+.btn-shop:hover { background:#333 }
+.btn-review { background:var(--bg); color:var(--text); border:1px solid var(--border); border-radius:10px; padding:10px 14px; font-family:'DM Sans',sans-serif; font-size:13px; cursor:pointer; text-decoration:none; text-align:center; transition:border-color .15s; white-space:nowrap }
+.btn-review:hover { border-color:#999 }
+.retailer-pills { display:flex; gap:6px; padding:10px 16px; border-top:1px solid var(--border); overflow-x:auto; scrollbar-width:none }
+.retailer-pills::-webkit-scrollbar { display:none }
+.retailer-pill { display:flex; align-items:center; gap:4px; font-size:11px; padding:4px 10px; border-radius:40px; border:1px solid var(--border); color:var(--muted); text-decoration:none; white-space:nowrap; transition:all .15s; flex-shrink:0 }
+.retailer-pill:hover { border-color:var(--text); color:var(--text) }
 
-  #search::placeholder { color: var(--muted) }
-  #search:focus { border-color: var(--gold); width: 280px }
+/* SKELETON */
+.loading-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:16px }
+.skeleton { background:var(--white); border-radius:var(--radius); border:1px solid var(--border); overflow:hidden }
+.skel-img { aspect-ratio:1; background:linear-gradient(90deg,#f0f0f0 25%,#e8e8e8 50%,#f0f0f0 75%); background-size:200% 100%; animation:shimmer 1.5s infinite }
+.skel-body { padding:14px 16px }
+.skel-line { height:12px; border-radius:6px; background:linear-gradient(90deg,#f0f0f0 25%,#e8e8e8 50%,#f0f0f0 75%); background-size:200% 100%; animation:shimmer 1.5s infinite; margin-bottom:8px }
+.skel-line.short { width:60% }
+.skel-line.btn { height:36px; margin-top:12px; border-radius:10px }
+@keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
 
-  .search-icon {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--muted);
-    font-size: 13px;
-  }
+.no-results { display:none; text-align:center; padding:5rem 2rem; color:var(--muted) }
+.no-results h3 { font-family:'Playfair Display',serif; font-size:1.5rem; color:var(--text); margin-bottom:.5rem }
 
-  .instagram-link {
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 13px;
-    letter-spacing: .05em;
-    transition: color .2s;
-  }
-  .instagram-link:hover { color: var(--gold) }
+footer { background:var(--white); border-top:1px solid var(--border); padding:1.5rem 2rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem }
+.footer-logo { font-family:'Playfair Display',serif; font-size:1.1rem }
+.footer-note { font-size:12px; color:var(--muted); max-width:500px; line-height:1.6 }
 
-  /* ── HERO ── */
-  .hero {
-    text-align: center;
-    padding: 5rem 2rem 3rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -100px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 600px;
-    height: 400px;
-    background: radial-gradient(ellipse, rgba(201,169,110,.08) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .hero-tag {
-    display: inline-block;
-    font-size: 10px;
-    letter-spacing: .2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    border: 1px solid rgba(201,169,110,.3);
-    padding: 4px 16px;
-    border-radius: 40px;
-    margin-bottom: 1.5rem;
-  }
-
-  .hero h1 {
-    font-family: 'Cormorant', serif;
-    font-size: clamp(2.5rem, 6vw, 5rem);
-    font-weight: 300;
-    line-height: 1.1;
-    color: var(--white);
-    margin-bottom: 1rem;
-    letter-spacing: -.01em;
-  }
-
-  .hero h1 em {
-    font-style: italic;
-    color: var(--gold);
-  }
-
-  .hero-sub {
-    font-size: 15px;
-    color: var(--muted);
-    max-width: 480px;
-    margin: 0 auto 2.5rem;
-    line-height: 1.7;
-    font-weight: 300;
-  }
-
-  /* ── CATEGORIES ── */
-  .cats {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding: 0 2rem 3rem;
-  }
-
-  .cat-btn {
-    background: transparent;
-    border: 1px solid var(--border);
-    border-radius: 40px;
-    padding: 8px 20px;
-    color: var(--muted);
-    font-family: 'Outfit', sans-serif;
-    font-size: 12px;
-    font-weight: 400;
-    letter-spacing: .06em;
-    cursor: pointer;
-    transition: all .2s;
-  }
-
-  .cat-btn:hover, .cat-btn.active {
-    background: var(--gold);
-    border-color: var(--gold);
-    color: var(--bg);
-  }
-
-  /* ── GRID ── */
-  .grid-wrap {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 2rem 6rem;
-  }
-
-  .section-title {
-    font-family: 'Cormorant', serif;
-    font-size: 1.1rem;
-    font-weight: 400;
-    color: var(--muted);
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    overflow: hidden;
-    margin-bottom: 4rem;
-  }
-
-  .product-card {
-    background: var(--bg);
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    transition: background .2s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .product-card:hover { background: var(--bg2) }
-
-  .product-card:hover .card-actions { opacity: 1; transform: translateY(0) }
-
-  .card-img {
-    aspect-ratio: 1;
-    overflow: hidden;
-    background: var(--bg3);
-    position: relative;
-  }
-
-  .card-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform .4s ease;
-  }
-
-  .product-card:hover .card-img img { transform: scale(1.04) }
-
-  .card-img-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Cormorant', serif;
-    font-size: 2rem;
-    color: var(--muted);
-    letter-spacing: .1em;
-  }
-
-  .card-body {
-    padding: 16px 18px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .card-category {
-    font-size: 10px;
-    letter-spacing: .15em;
-    text-transform: uppercase;
-    color: var(--gold);
-    font-weight: 400;
-  }
-
-  .card-name {
-    font-family: 'Cormorant', serif;
-    font-size: 1.05rem;
-    font-weight: 400;
-    color: var(--white);
-    line-height: 1.3;
-  }
-
-  .card-brand {
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: .05em;
-  }
-
-  .card-rating {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-top: 2px;
-  }
-
-  .stars { color: var(--gold); font-size: 11px; letter-spacing: 1px }
-  .rating-num { font-size: 11px; color: var(--muted) }
-
-  .card-actions {
-    padding: 0 18px 16px;
-    display: flex;
-    gap: 8px;
-    opacity: 0;
-    transform: translateY(6px);
-    transition: all .2s;
-  }
-
-  .btn-primary {
-    flex: 1;
-    background: var(--gold);
-    color: var(--bg);
-    border: none;
-    border-radius: 6px;
-    padding: 9px 14px;
-    font-family: 'Outfit', sans-serif;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: .05em;
-    cursor: pointer;
-    text-decoration: none;
-    text-align: center;
-    transition: opacity .15s;
-  }
-
-  .btn-primary:hover { opacity: .85 }
-
-  .btn-secondary {
-    background: var(--bg3);
-    color: var(--pearl2);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 9px 14px;
-    font-family: 'Outfit', sans-serif;
-    font-size: 12px;
-    font-weight: 400;
-    cursor: pointer;
-    text-decoration: none;
-    text-align: center;
-    transition: border-color .15s;
-    white-space: nowrap;
-  }
-
-  .btn-secondary:hover { border-color: var(--muted) }
-
-  /* ── EMPTY STATE ── */
-  .empty {
-    text-align: center;
-    padding: 5rem 2rem;
-    color: var(--muted);
-  }
-
-  .empty h3 {
-    font-family: 'Cormorant', serif;
-    font-size: 1.5rem;
-    color: var(--pearl2);
-    margin-bottom: .5rem;
-  }
-
-  /* ── NO RESULTS ── */
-  #no-results {
-    display: none;
-    text-align: center;
-    padding: 4rem;
-    color: var(--muted);
-    font-family: 'Cormorant', serif;
-    font-size: 1.2rem;
-    font-style: italic;
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 2rem 2.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .footer-logo {
-    font-family: 'Cormorant', serif;
-    font-size: 1.1rem;
-    letter-spacing: .15em;
-    color: var(--muted);
-  }
-
-  .footer-note {
-    font-size: 11px;
-    color: var(--muted);
-    max-width: 400px;
-    line-height: 1.6;
-  }
-
-  /* ── LOADING ── */
-  .loading {
-    text-align: center;
-    padding: 4rem;
-    color: var(--muted);
-    font-family: 'Cormorant', serif;
-    font-style: italic;
-    font-size: 1.1rem;
-  }
-
-  @keyframes pulse { 0%,100%{opacity:.4} 50%{opacity:1} }
-  .loading { animation: pulse 2s infinite }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 600px) {
-    nav { padding: 0 1.25rem }
-    .hero { padding: 3rem 1.25rem 2rem }
-    .grid-wrap { padding: 0 1.25rem 4rem }
-    #search { width: 160px }
-    #search:focus { width: 200px }
-    .product-grid { grid-template-columns: repeat(2, 1fr) }
-    footer { flex-direction: column; padding: 1.5rem 1.25rem }
-  }
+@media(max-width:768px){
+  :root{--sidebar:0px}
+  .sidebar{display:none}
+  .topbar{padding:0 1rem}
+  .hero-banner{flex-direction:column;padding:2rem 1rem}
+  .hero-stats{justify-content:center}
+  .cat-bar{padding:0 1rem}
+  .content{padding:1rem}
+  .product-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+}
 </style>
 </head>
 <body>
 
-<nav>
-  <a href="/" class="logo">NACR<span>É</span></a>
-  <div class="nav-right">
-    <div class="search-wrap">
-      <span class="search-icon">⌕</span>
-      <input type="text" id="search" placeholder="Search products...">
+<aside class="sidebar">
+  <a href="/" class="sidebar-logo">NACRÉ</a>
+  <a class="nav-icon active" title="All">🏠</a>
+  <a class="nav-icon" title="Skincare" onclick="filterCat('skincare',this)">✨</a>
+  <a class="nav-icon" title="Makeup" onclick="filterCat('makeup',this)">💄</a>
+  <a class="nav-icon" title="Fragrance" onclick="filterCat('fragrance',this)">🌸</a>
+  <a class="nav-icon" title="Haircare" onclick="filterCat('haircare',this)">💆</a>
+  <a class="nav-icon" title="Body Care" onclick="filterCat('body_care',this)">🛁</a>
+  <a class="nav-icon" title="Tools" onclick="filterCat('beauty_tools',this)">🔧</a>
+  <div style="margin-top:auto">
+    <a href="https://instagram.com/maisonglow" target="_blank" class="nav-icon" title="Instagram">📷</a>
+  </div>
+</aside>
+
+<div class="main">
+  <header class="topbar">
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="search" placeholder="Search beauty products...">
     </div>
-    <a href="https://instagram.com/maisonglow" target="_blank" class="instagram-link">Instagram ↗</a>
+    <a href="https://instagram.com/maisonglow" target="_blank" class="insta-btn">📷 Follow</a>
+  </header>
+
+  <div class="hero-banner">
+    <div class="hero-text">
+      <h1>The luxury<br>beauty <em>edit</em></h1>
+      <p>Curated reviews and honest comparisons across Sephora, Amazon, Glossier and beyond.</p>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num" id="total-count">—</div><div class="stat-label">Products</div></div>
+      <div class="stat"><div class="stat-num">8</div><div class="stat-label">Categories</div></div>
+      <div class="stat"><div class="stat-num">5</div><div class="stat-label">Retailers</div></div>
+    </div>
   </div>
-</nav>
 
-<section class="hero">
-  <div class="hero-tag">The Luxury Beauty Edit</div>
-  <h1>Beauty finds<br>worth <em>obsessing over</em></h1>
-  <p class="hero-sub">Curated reviews, honest comparisons, and the best prices across Sephora, Amazon, and beyond.</p>
-</section>
-
-<div class="cats" id="cats">
-  <button class="cat-btn active" onclick="filterCat('all', this)">All</button>
-  <button class="cat-btn" onclick="filterCat('skincare', this)">Skincare</button>
-  <button class="cat-btn" onclick="filterCat('makeup', this)">Makeup</button>
-  <button class="cat-btn" onclick="filterCat('fragrance', this)">Fragrance</button>
-  <button class="cat-btn" onclick="filterCat('haircare', this)">Haircare</button>
-  <button class="cat-btn" onclick="filterCat('body_care', this)">Body Care</button>
-  <button class="cat-btn" onclick="filterCat('nail_care', this)">Nails</button>
-  <button class="cat-btn" onclick="filterCat('beauty_tools', this)">Tools</button>
-  <button class="cat-btn" onclick="filterCat('wellness_beauty', this)">Wellness</button>
-</div>
-
-<div class="grid-wrap">
-  <div id="product-container">
-    <div class="loading">Loading the edit…</div>
+  <div class="cat-bar">
+    <button class="cat-pill active" onclick="filterCat('all',this)">🛍 All</button>
+    <button class="cat-pill" onclick="filterCat('skincare',this)">✨ Skincare</button>
+    <button class="cat-pill" onclick="filterCat('makeup',this)">💄 Makeup</button>
+    <button class="cat-pill" onclick="filterCat('fragrance',this)">🌸 Fragrance</button>
+    <button class="cat-pill" onclick="filterCat('haircare',this)">💆 Haircare</button>
+    <button class="cat-pill" onclick="filterCat('body_care',this)">🛁 Body Care</button>
+    <button class="cat-pill" onclick="filterCat('nail_care',this)">💅 Nails</button>
+    <button class="cat-pill" onclick="filterCat('beauty_tools',this)">🔧 Tools</button>
+    <button class="cat-pill" onclick="filterCat('wellness_beauty',this)">🌿 Wellness</button>
   </div>
-  <div id="no-results">No products found for that search.</div>
-</div>
 
-<footer>
-  <div class="footer-logo">NACRÉ</div>
-  <div class="footer-note">This site contains affiliate links. We may earn a commission at no extra cost to you when you shop through our links. We only feature products we genuinely love.</div>
-</footer>
+  <div class="content">
+    <div id="product-container"></div>
+    <div class="no-results" id="no-results">
+      <h3>No products found</h3>
+      <p>Try a different search or category</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-logo">Nacré</div>
+    <div class="footer-note">Contains affiliate links — we may earn a commission at no extra cost to you. We only feature products we genuinely love.</div>
+  </footer>
+</div>
 
 <script>
-let allProducts = [];
-let currentCat = 'all';
+let allProducts=[], currentCat='all';
+const CATS={skincare:'Skincare',makeup:'Makeup',fragrance:'Fragrance',haircare:'Haircare',body_care:'Body Care',nail_care:'Nail Care',beauty_tools:'Beauty Tools',wellness_beauty:'Wellness'};
 
-// Stars renderer
-function stars(rating) {
-  const r = parseFloat(rating) || 4;
-  return '★'.repeat(Math.round(r)) + '☆'.repeat(5 - Math.round(r));
+function stars(r){const n=Math.round(parseFloat(r)||4);return'★'.repeat(n)+'☆'.repeat(5-n)}
+
+function buildCard(p){
+  const slug=(p.name||'').toLowerCase().replace(/\s+/g,'-').slice(0,40);
+  const cat=(p.category||'skincare').replace(/\s+/g,'_');
+  const reviewUrl=p.review_url||`https://nacre.beauty/docs/${cat}/${slug}.html`;
+  const shopUrl=p.affiliate_url||p.amazon_url||reviewUrl;
+  const initial=(p.name||'N')[0].toUpperCase();
+  const imgHtml=p.image_url
+    ?`<img src="${p.image_url}" alt="${p.name}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=img-placeholder><div class=p-initial>${initial}</div><div class=p-name>${p.name}</div></div>'">`
+    :`<div class="img-placeholder"><div class="p-initial">${initial}</div><div class="p-name">${p.name}</div></div>`;
+  let retailers='';
+  if(p.sephora_url)retailers+=`<a href="${p.sephora_url}" target="_blank" class="retailer-pill">🖤 Sephora</a>`;
+  if(p.amazon_url)retailers+=`<a href="${p.amazon_url}" target="_blank" class="retailer-pill">📦 Amazon</a>`;
+  if(p.ebay_url)retailers+=`<a href="${p.ebay_url}" target="_blank" class="retailer-pill">🛒 eBay</a>`;
+  return`<div class="product-card">
+    <div class="card-img">${imgHtml}${p.badge?`<div class="card-badge">${p.badge}</div>`:''}<div class="wishlist">♡</div></div>
+    <div class="card-body">
+      <div class="card-brand">${p.brand||''}</div>
+      <div class="card-name">${p.name||''}</div>
+      <div class="card-rating"><span class="stars">${stars(p.rating)}</span><span class="rating-count">${p.rating||''} ${p.reviews?`(${p.reviews})`:''}</span></div>
+      <div class="card-actions">
+        <a href="${shopUrl}" target="_blank" rel="noopener" class="btn-shop">Shop Now</a>
+        <a href="${reviewUrl}" class="btn-review">Review</a>
+      </div>
+    </div>
+    ${retailers?`<div class="retailer-pills">${retailers}</div>`:''}
+  </div>`;
 }
 
-// Render all products grouped by category
-function render(products) {
-  const container = document.getElementById('product-container');
-  const noResults = document.getElementById('no-results');
-
-  if (products.length === 0) {
-    container.innerHTML = '';
-    noResults.style.display = 'block';
-    return;
-  }
-
-  noResults.style.display = 'none';
-
-  // Group by category
-  const groups = {};
-  products.forEach(p => {
-    const cat = p.category || 'other';
-    if (!groups[cat]) groups[cat] = [];
-    groups[cat].push(p);
-  });
-
-  let html = '';
-  for (const [cat, items] of Object.entries(groups)) {
-    const catLabel = cat.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-    html += `<div class="section-title"><span>${catLabel}</span><span style="font-size:11px;letter-spacing:.05em">${items.length} picks</span></div>`;
-    html += `<div class="product-grid">`;
-    items.forEach(p => {
-      const imgTag = p.image_url
-        ? `<img src="${p.image_url}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'">`
-        : `<div class="card-img-placeholder">N</div>`;
-
-      const reviewUrl = p.review_url || '#';
-      const affiliateUrl = p.affiliate_url || p.amazon_url || '#';
-
-      html += `
-        <div class="product-card">
-          <div class="card-img">${imgTag}</div>
-          <div class="card-body">
-            <div class="card-category">${(p.category || '').replace(/_/g,' ')}</div>
-            <div class="card-name">${p.name}</div>
-            <div class="card-brand">${p.brand || ''}</div>
-            <div class="card-rating">
-              <span class="stars">${stars(p.rating)}</span>
-              <span class="rating-num">${p.rating || ''} ${p.reviews ? `· ${p.reviews} reviews` : ''}</span>
-            </div>
-          </div>
-          <div class="card-actions">
-            <a href="${affiliateUrl}" target="_blank" rel="noopener" class="btn-primary">Shop Now</a>
-            <a href="${reviewUrl}" class="btn-secondary">Review</a>
-          </div>
-        </div>`;
-    });
-    html += `</div>`;
-  }
-
-  container.innerHTML = html;
+function showSkeletons(){
+  document.getElementById('product-container').innerHTML=`<div class="loading-grid">${Array(8).fill(`<div class="skeleton"><div class="skel-img"></div><div class="skel-body"><div class="skel-line short"></div><div class="skel-line"></div><div class="skel-line short"></div><div class="skel-line btn"></div></div></div>`).join('')}</div>`;
 }
 
-// Filter by category
-function filterCat(cat, btn) {
-  currentCat = cat;
-  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
+function render(products){
+  const c=document.getElementById('product-container');
+  const nr=document.getElementById('no-results');
+  if(!products.length){c.innerHTML='';nr.style.display='block';return}
+  nr.style.display='none';
+  const groups={};
+  products.forEach(p=>{const k=(p.category||'other').replace(/\s+/g,'_');if(!groups[k])groups[k]=[];groups[k].push(p)});
+  c.innerHTML=Object.entries(groups).map(([cat,items])=>`
+    <div class="section">
+      <div class="section-head"><h2 class="section-title">${CATS[cat]||cat.replace(/_/g,' ')}</h2><span class="section-count">${items.length} picks</span></div>
+      <div class="product-grid">${items.map(buildCard).join('')}</div>
+    </div>`).join('');
+  document.getElementById('total-count').textContent=products.length;
+}
+
+function filterCat(cat,btn){
+  currentCat=cat;
+  document.querySelectorAll('.cat-pill').forEach(b=>b.classList.remove('active'));
+  if(btn)btn.classList.add('active');
   applyFilters();
 }
 
-// Search + category filter
-function applyFilters() {
-  const query = document.getElementById('search').value.toLowerCase();
-  let filtered = allProducts;
-
-  if (currentCat !== 'all') {
-    filtered = filtered.filter(p => (p.category || '') === currentCat);
-  }
-
-  if (query) {
-    filtered = filtered.filter(p =>
-      (p.name || '').toLowerCase().includes(query) ||
-      (p.brand || '').toLowerCase().includes(query) ||
-      (p.category || '').toLowerCase().includes(query)
-    );
-  }
-
-  render(filtered);
+function applyFilters(){
+  const q=document.getElementById('search').value.toLowerCase();
+  let f=allProducts;
+  if(currentCat!=='all')f=f.filter(p=>(p.category||'').replace(/\s+/g,'_')===currentCat);
+  if(q)f=f.filter(p=>(p.name+p.brand+p.category).toLowerCase().includes(q));
+  render(f);
 }
 
-// Load products from agent-generated JSON
-async function loadProducts() {
-  try {
-    const res = await fetch('./products.json');
-    if (!res.ok) throw new Error('No products file yet');
-    allProducts = await res.json();
-    render(allProducts);
-  } catch (e) {
-    // Fallback: show sample products so page never looks empty
-    allProducts = [
-      { name: "Dermalogica Healthy Skin Kit", brand: "Dermalogica", category: "skincare", rating: 4.8, reviews: "2.1k", image_url: "", affiliate_url: "https://nacre.beauty/docs/skincare/dermalogica-discover-healthy-skin-kit.html", review_url: "https://nacre.beauty/docs/skincare/dermalogica-discover-healthy-skin-kit.html" },
-      { name: "The Ordinary Mini Discovery Set", brand: "The Ordinary", category: "skincare", rating: 4.6, reviews: "890", image_url: "", affiliate_url: "#", review_url: "https://nacre.beauty/docs/skincare/the-ordinary-the-mini-discovery-set.html" },
-      { name: "Youth To The People Superfood Cleanser", brand: "Youth To The People", category: "skincare", rating: 4.7, reviews: "3.4k", image_url: "", affiliate_url: "#", review_url: "https://nacre.beauty/docs/skincare/youth-to-the-people-superfood-cleanser.html" },
-      { name: "Kayali Vanilla 28 Eau de Parfum", brand: "Kayali", category: "fragrance", rating: 4.9, reviews: "1.2k", image_url: "", affiliate_url: "#", review_url: "#" },
+async function loadProducts(){
+  showSkeletons();
+  try{
+    const res=await fetch('./products.json?v='+Date.now());
+    if(!res.ok)throw new Error();
+    allProducts=await res.json();
+  }catch{
+    allProducts=[
+      {name:"Dermalogica Healthy Skin Kit",brand:"Dermalogica",category:"skincare",rating:4.8,reviews:"2.1k",image_url:"",affiliate_url:"https://nacre.beauty/docs/skincare/dermalogica-discover-healthy-skin-kit.html",review_url:"https://nacre.beauty/docs/skincare/dermalogica-discover-healthy-skin-kit.html",badge:"Editor's Pick"},
+      {name:"The Ordinary Mini Discovery Set",brand:"The Ordinary",category:"skincare",rating:4.6,reviews:"890",image_url:"",affiliate_url:"#",review_url:"https://nacre.beauty/docs/skincare/the-ordinary-the-mini-discovery-set.html"},
+      {name:"Youth To The People Superfood Cleanser",brand:"Youth To The People",category:"skincare",rating:4.7,reviews:"3.4k",image_url:"",affiliate_url:"#",review_url:"https://nacre.beauty/docs/skincare/youth-to-the-people-superfood-cleanser.html",badge:"Best Seller"},
+      {name:"Kayali Vanilla 28 Eau de Parfum",brand:"Kayali",category:"fragrance",rating:4.9,reviews:"1.2k",image_url:"",affiliate_url:"#",review_url:"#"},
+      {name:"Charlotte Tilbury Pillow Talk Lipstick",brand:"Charlotte Tilbury",category:"makeup",rating:4.8,reviews:"5.6k",image_url:"",affiliate_url:"#",review_url:"#",badge:"Top Rated"},
+      {name:"Olaplex No.3 Hair Perfector",brand:"Olaplex",category:"haircare",rating:4.7,reviews:"12k",image_url:"",affiliate_url:"#",review_url:"#"},
     ];
-    render(allProducts);
   }
+  render(allProducts);
+  document.getElementById('total-count').textContent=allProducts.length;
 }
 
-// Search listener
-document.getElementById('search').addEventListener('input', applyFilters);
-
-// Init
+document.getElementById('search').addEventListener('input',applyFilters);
 loadProducts();
 </script>
 </body>
