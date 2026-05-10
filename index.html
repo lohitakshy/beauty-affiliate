@@ -324,6 +324,15 @@ let sliderInterval = null;
 let currentImgIdx = 0;
 let currentImgs = [];
 
+// Browser back/forward button support
+window.addEventListener('popstate', function(e) {
+  if (e.state && e.state.view === 'product') {
+    showProduct(e.state.idx, false);
+  } else {
+    showHome(false);
+  }
+});
+
 const CATS = {
   skincare:'Skincare', makeup:'Makeup', fragrance:'Fragrance',
   haircare:'Haircare', body_care:'Body Care', nail_care:'Nail Care',
@@ -344,22 +353,28 @@ function stars(r) {
   return '★'.repeat(n) + '☆'.repeat(5 - n);
 }
 
-// Generate multiple image variants from one URL for gallery
+// Get all downloaded images for a product
 function getImageSet(p) {
-  const base = p.image_url || p.image_url_orig || '';
+  const imgs = [];
+  const cat = (p.category || '').replace(/\s+/g, '_');
+  const base = p.image_url || '';
   if (!base) return [];
-  const proxied = proxyImg(base, 600);
-  // Create slight variations for gallery effect (different crop sizes)
-  return [
-    proxied,
-    proxyImg(base, 500),
-    proxyImg(base, 450),
-    proxyImg(base, 550),
-  ].filter(Boolean);
+  
+  // Add primary image
+  imgs.push(base);
+  
+  // Check for numbered variants (-1, -2, -3)
+  const baseNoExt = base.replace(/\.jpg$/, '');
+  const baseNoNum = baseNoExt.replace(/-\d+$/, '');
+  for (let i = 1; i <= 3; i++) {
+    imgs.push(baseNoNum + '-' + i + '.jpg');
+  }
+  
+  return imgs;
 }
 
 // ── HOME VIEW ──
-function showHome() {
+function showHome(push) {
   clearInterval(sliderInterval);
   document.getElementById('home-view').style.display = 'flex';
   document.getElementById('product-view').style.display = 'none';
@@ -367,7 +382,7 @@ function showHome() {
   window.scrollTo(0, 0);
 }
 
-function showProduct(idx) {
+function showProduct(idx, push) {
   clearInterval(sliderInterval);
   const p = window._filtered[idx];
   if (!p) return;
@@ -379,6 +394,7 @@ function showProduct(idx) {
   document.getElementById('home-view').style.display = 'none';
   document.getElementById('product-view').style.display = 'flex';
   window.scrollTo(0, 0);
+  if (push !== false) history.pushState({view:'product', idx}, '', '#product');
 
   // Breadcrumb
   const cat = CATS[(p.category||'').replace(/\s+/g,'_')] || p.category || '';
