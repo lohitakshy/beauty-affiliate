@@ -334,8 +334,9 @@ const CATS = {
 // wsrv.nl proxies any image URL, bypasses hotlink protection, caches globally
 function proxyImg(url, w=400) {
   if (!url) return '';
-  if (url.startsWith('images/')) return url; // local file
-  return `https://wsrv.nl/?url=${encodeURIComponent(url)}&w=${w}&h=${w}&fit=cover&output=jpg`;
+  if (url.startsWith('images/')) return url;
+  if (url.startsWith('http')) return url;
+  return '';
 }
 
 function stars(r) {
