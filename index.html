@@ -17,7 +17,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);dis
 .sicon:hover,.sicon.active{background:var(--bg);color:var(--text)}
 
 /* MAIN */
-.main{margin-left:var(--sidebar);flex:1;min-height:100vh}
+.main{margin-left:var(--sidebar);flex:1;min-height:100vh;display:flex;flex-direction:column}
 
 /* TOPBAR */
 .topbar{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.5rem;height:60px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:100}
@@ -47,66 +47,33 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);dis
 .cat-pill.active{background:var(--text);border-color:var(--text);color:var(--white)}
 
 /* CONTENT */
-.content{padding:1.5rem}
+.content{padding:1.5rem;flex:1}
 .section{margin-bottom:2.5rem}
 .section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1rem}
 .section-title{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:400}
 .section-count{font-size:12px;color:var(--muted)}
-.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+
+/* PRODUCT GRID - shop.app style */
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
 
 /* CARD */
-.card{background:var(--white);border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);cursor:pointer;transition:box-shadow .2s,transform .2s;position:relative}
+.card{background:var(--white);border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);cursor:pointer;transition:box-shadow .2s,transform .2s}
 .card:hover{box-shadow:0 6px 24px rgba(0,0,0,.08);transform:translateY(-2px)}
 .card-img{aspect-ratio:1;background:var(--bg);overflow:hidden;position:relative}
 .card-img img{width:100%;height:100%;object-fit:cover;transition:transform .35s}
 .card:hover .card-img img{transform:scale(1.05)}
 .img-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#f5f0ea,#ede8e0)}
-.ph-letter{font-family:'Playfair Display',serif;font-size:2.8rem;color:#C4B49A;font-style:italic}
+.ph-letter{font-family:'Playfair Display',serif;font-size:3rem;color:#C4B49A;font-style:italic}
 .ph-name{font-size:11px;color:#B0A898;text-align:center;padding:0 .75rem;line-height:1.4}
-.card-badge{position:absolute;top:10px;left:10px;background:var(--white);border-radius:40px;padding:3px 10px;font-size:10px;font-weight:500;color:var(--gold);border:1px solid rgba(201,169,110,.3)}
+.card-badge{position:absolute;top:10px;left:10px;background:rgba(255,255,255,.95);border-radius:40px;padding:3px 10px;font-size:10px;font-weight:500;color:var(--gold);border:1px solid rgba(201,169,110,.3)}
 .card-body{padding:12px 14px}
 .card-brand{font-size:10px;font-weight:600;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
-.card-name{font-size:13px;color:var(--text);line-height:1.4;margin-bottom:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.card-stars{color:#F5A623;font-size:11px;letter-spacing:1px}
+.card-name{font-size:13px;color:var(--text);line-height:1.4;margin-bottom:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.8em}
 .card-rating-row{display:flex;align-items:center;gap:5px;margin-bottom:10px}
+.card-stars{color:#F5A623;font-size:11px;letter-spacing:1px}
 .card-rcount{font-size:11px;color:var(--muted)}
 .card-btn{width:100%;background:var(--text);color:var(--white);border:none;border-radius:10px;padding:9px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:background .15s}
 .card-btn:hover{background:#333}
-
-/* SLIDE-IN PANEL */
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:300;opacity:0;pointer-events:none;transition:opacity .3s}
-.overlay.open{opacity:1;pointer-events:all}
-.panel{position:fixed;top:0;right:0;bottom:0;width:min(560px,100vw);background:var(--white);z-index:301;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);overflow-y:auto;display:flex;flex-direction:column}
-.panel.open{transform:translateX(0)}
-.panel-close{position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;background:var(--bg);border:none;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;color:var(--muted);z-index:10;transition:background .15s}
-.panel-close:hover{background:var(--border)}
-.panel-img{width:100%;aspect-ratio:1;background:var(--bg);overflow:hidden;flex-shrink:0;position:relative}
-.panel-img img{width:100%;height:100%;object-fit:cover}
-.panel-img-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f5f0ea,#ede8e0);font-family:'Playfair Display',serif;font-size:5rem;color:#C4B49A;font-style:italic}
-.panel-body{padding:1.5rem;flex:1}
-.panel-brand{font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
-.panel-name{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:400;line-height:1.2;margin-bottom:12px}
-.panel-rating{display:flex;align-items:center;gap:8px;margin-bottom:16px}
-.panel-stars{color:#F5A623;font-size:14px;letter-spacing:1px}
-.panel-rcount{font-size:13px;color:var(--muted)}
-.panel-badge{display:inline-block;background:#FFF8EE;color:var(--gold);border:1px solid rgba(201,169,110,.3);border-radius:40px;padding:3px 12px;font-size:11px;font-weight:500;margin-bottom:16px}
-.panel-desc{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:20px}
-.panel-section-title{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
-.pros-list{list-style:none;display:flex;flex-direction:column;gap:6px;margin-bottom:20px}
-.pros-list li{font-size:13px;color:var(--text);padding-left:1.2rem;position:relative}
-.pros-list li::before{content:'✓';position:absolute;left:0;color:var(--gold);font-size:11px}
-.how-to{background:var(--bg);border-radius:12px;padding:14px 16px;margin-bottom:20px;font-size:13px;color:var(--muted);line-height:1.7}
-.retailer-section{margin-bottom:20px}
-.retailer-btns{display:flex;flex-direction:column;gap:8px}
-.r-btn{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-radius:12px;border:1.5px solid var(--border);text-decoration:none;color:var(--text);font-size:14px;font-weight:500;transition:all .15s;background:var(--white)}
-.r-btn:hover{border-color:var(--text);background:var(--bg)}
-.r-btn-left{display:flex;align-items:center;gap:10px}
-.r-name{font-weight:500}
-.r-tag{font-size:11px;color:var(--muted);font-weight:400}
-.r-arrow{color:var(--muted);font-size:16px}
-.r-primary{background:var(--text);color:var(--white);border-color:var(--text)}
-.r-primary .r-tag,.r-primary .r-arrow{color:rgba(255,255,255,.6)}
-.r-primary:hover{background:#333;border-color:#333}
 
 /* SKELETON */
 .skel{background:var(--white);border-radius:var(--radius);border:1px solid var(--border);overflow:hidden}
@@ -119,9 +86,38 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);dis
 .no-results{display:none;text-align:center;padding:4rem 2rem;color:var(--muted)}
 .no-results h3{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--text);margin-bottom:.5rem}
 
-footer{background:var(--white);border-top:1px solid var(--border);padding:1.25rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
-.footer-logo{font-family:'Playfair Display',serif;font-size:1rem;letter-spacing:.05em}
-.footer-note{font-size:11px;color:var(--muted);max-width:500px;line-height:1.6}
+/* OVERLAY + PANEL */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:300;opacity:0;pointer-events:none;transition:opacity .3s}
+.overlay.open{opacity:1;pointer-events:all}
+.panel{position:fixed;top:0;right:0;bottom:0;width:min(580px,100vw);background:var(--white);z-index:301;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);overflow-y:auto;display:flex;flex-direction:column;box-shadow:-4px 0 40px rgba(0,0,0,.12)}
+.panel.open{transform:translateX(0)}
+.panel-close{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;background:rgba(0,0,0,.06);border:none;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;color:var(--text);z-index:10;transition:background .15s}
+.panel-close:hover{background:rgba(0,0,0,.12)}
+.panel-img{width:100%;aspect-ratio:1;background:var(--bg);overflow:hidden;position:relative;flex-shrink:0}
+.panel-img img{width:100%;height:100%;object-fit:cover}
+.panel-img-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f5f0ea,#ede8e0);font-family:'Playfair Display',serif;font-size:6rem;color:#C4B49A;font-style:italic}
+.panel-body{padding:1.5rem;flex:1}
+.panel-brand{font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.panel-name{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:400;line-height:1.2;margin-bottom:10px}
+.panel-rating{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.panel-stars{color:#F5A623;font-size:14px;letter-spacing:1px}
+.panel-rcount{font-size:13px;color:var(--muted)}
+.panel-badge{display:inline-block;background:#FFF8EE;color:var(--gold);border:1px solid rgba(201,169,110,.3);border-radius:40px;padding:3px 12px;font-size:11px;font-weight:500;margin-bottom:14px}
+.panel-desc{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--border)}
+.panel-sec{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;margin-top:16px}
+.pros-list{list-style:none;display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.pros-list li{font-size:13px;color:var(--text);padding-left:1.4rem;position:relative;line-height:1.5}
+.pros-list li::before{content:'✓';position:absolute;left:0;color:var(--gold)}
+.how-to-box{background:var(--bg);border-radius:12px;padding:14px 16px;margin-bottom:18px;font-size:13px;color:var(--muted);line-height:1.7}
+.retailer-btns{display:flex;flex-direction:column;gap:8px;padding-bottom:2rem}
+.r-btn{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-radius:12px;border:1.5px solid var(--border);text-decoration:none;color:var(--text);font-size:14px;font-weight:500;transition:all .15s;background:var(--white)}
+.r-btn:hover{border-color:#999}
+.r-btn.primary{background:var(--text);color:var(--white);border-color:var(--text)}
+.r-btn.primary:hover{background:#333;border-color:#333}
+.r-left{display:flex;align-items:center;gap:10px}
+.r-sub{font-size:11px;font-weight:400;opacity:.6;display:block;margin-top:1px}
+.r-arrow{opacity:.5;font-size:16px}
+.r-btn.primary .r-arrow{opacity:.7}
 
 @media(max-width:700px){
   :root{--sidebar:0px}
@@ -148,7 +144,7 @@ footer{background:var(--white);border-top:1px solid var(--border);padding:1.25re
   <button class="sicon" onclick="filterCat('body_care',this)" title="Body Care">🛁</button>
   <button class="sicon" onclick="filterCat('nail_care',this)" title="Nails">💅</button>
   <button class="sicon" onclick="filterCat('beauty_tools',this)" title="Tools">🔧</button>
-  <a href="https://instagram.com/maisonglow" target="_blank" class="sicon" style="margin-top:auto" title="Instagram">📷</a>
+  <a href="https://instagram.com/maisonglow412" target="_blank" class="sicon" style="margin-top:auto" title="Instagram">📷</a>
 </aside>
 
 <div class="main">
@@ -157,13 +153,13 @@ footer{background:var(--white);border-top:1px solid var(--border);padding:1.25re
       <span class="search-icon">🔍</span>
       <input type="text" id="search" placeholder="Search beauty products...">
     </div>
-    <a href="https://instagram.com/maisonglow" target="_blank" class="follow-btn">📷 Follow</a>
+    <a href="https://instagram.com/maisonglow412" target="_blank" class="follow-btn">📷 @maisonglow412</a>
   </header>
 
   <div class="hero">
     <div>
-      <h1>The luxury<br>beauty <em>edit</em></h1>
-      <p>Curated reviews and honest comparisons across Sephora, Amazon, Glossier and beyond.</p>
+      <h1>Discover beauty<br>worth <em>loving</em></h1>
+      <p>Hand-picked luxury beauty finds from Sephora, Amazon and Glossier — reviewed, compared, and linked for you.</p>
     </div>
     <div class="hero-stats">
       <div class="stat"><div class="stat-n" id="total-count">—</div><div class="stat-l">Products</div></div>
@@ -191,14 +187,9 @@ footer{background:var(--white);border-top:1px solid var(--border);padding:1.25re
       <p>Try a different search or category</p>
     </div>
   </div>
-
-  <footer>
-    <div class="footer-logo">Nacré</div>
-    <div class="footer-note">Contains affiliate links. We may earn a commission at no extra cost to you.</div>
-  </footer>
 </div>
 
-<!-- OVERLAY + PANEL -->
+<!-- OVERLAY + SLIDE-IN PANEL -->
 <div class="overlay" id="overlay" onclick="closePanel()"></div>
 <div class="panel" id="panel">
   <button class="panel-close" onclick="closePanel()">✕</button>
@@ -206,75 +197,86 @@ footer{background:var(--white);border-top:1px solid var(--border);padding:1.25re
 </div>
 
 <script>
-let allProducts = [], currentCat = 'all';
-const CATS = {skincare:'Skincare',makeup:'Makeup',fragrance:'Fragrance',haircare:'Haircare',body_care:'Body Care',nail_care:'Nail Care',beauty_tools:'Beauty Tools',wellness_beauty:'Wellness'};
+let allProducts = [];
+let currentCat = 'all';
+window._filtered = [];
 
-function stars(r){const n=Math.round(parseFloat(r)||4);return'★'.repeat(n)+'☆'.repeat(5-n)}
+const CATS = {
+  skincare:'Skincare', makeup:'Makeup', fragrance:'Fragrance',
+  haircare:'Haircare', body_care:'Body Care', nail_care:'Nail Care',
+  beauty_tools:'Beauty Tools', wellness_beauty:'Wellness'
+};
 
-function imgTag(url, name, cls=''){
-  const l = (name||'P')[0].toUpperCase();
-  if(url && url.startsWith('http'))
-    return `<img src="${url}" alt="${name}" loading="lazy" class="${cls}" onerror="this.outerHTML='<div class=img-ph><div class=ph-letter>${l}</div><div class=ph-name>${name}</div></div>'">`;
-  if(url && !url.startsWith('http'))
-    return `<img src="${url}" alt="${name}" loading="lazy" class="${cls}" onerror="this.outerHTML='<div class=img-ph><div class=ph-letter>${l}</div><div class=ph-name>${name}</div></div>'">`;
-  return `<div class="img-ph"><div class="ph-letter">${l}</div><div class="ph-name">${name}</div></div>`;
+function stars(r) {
+  const n = Math.round(parseFloat(r) || 4);
+  return '★'.repeat(n) + '☆'.repeat(5 - n);
 }
 
-function buildCard(p, i){
-  return `<div class="card" onclick="openPanel(${i})">
+function imgEl(url, name) {
+  const l = (name || 'N')[0].toUpperCase();
+  const ph = `<div class="img-ph"><div class="ph-letter">${l}</div><div class="ph-name">${name}</div></div>`;
+  if (!url) return ph;
+  return `<img src="${url}" alt="${name}" loading="lazy" onerror="this.parentElement.innerHTML='${ph.replace(/'/g,'"')}'"  style="width:100%;height:100%;object-fit:cover">`;
+}
+
+function buildCard(p, idx) {
+  return `
+  <div class="card" onclick="openPanel(${idx})">
     <div class="card-img">
-      ${imgTag(p.image_url, p.name)}
-      ${p.badge?`<div class="card-badge">${p.badge}</div>`:''}
+      ${imgEl(p.image_url, p.name)}
+      ${p.badge ? `<div class="card-badge">${p.badge}</div>` : ''}
     </div>
     <div class="card-body">
-      <div class="card-brand">${p.brand||''}</div>
-      <div class="card-name">${p.name||''}</div>
+      <div class="card-brand">${p.brand || ''}</div>
+      <div class="card-name">${p.name || ''}</div>
       <div class="card-rating-row">
         <span class="card-stars">${stars(p.rating)}</span>
-        <span class="card-rcount">${p.rating||''} ${p.reviews?`(${p.reviews})`:''}</span>
+        <span class="card-rcount">${p.rating || ''} ${p.reviews ? `(${p.reviews})` : ''}</span>
       </div>
-      <button class="card-btn" onclick="event.stopPropagation();openPanel(${i})">View Product</button>
+      <button class="card-btn">View Product</button>
     </div>
   </div>`;
 }
 
-function openPanel(idx){
+function openPanel(idx) {
   const p = window._filtered[idx];
-  if(!p) return;
+  if (!p) return;
 
-  const l = (p.name||'P')[0].toUpperCase();
-  const imgHtml = (p.image_url)
+  const l = (p.name || 'N')[0].toUpperCase();
+  const imgHtml = p.image_url
     ? `<img src="${p.image_url}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover" onerror="this.outerHTML='<div class=panel-img-ph>${l}</div>'">`
     : `<div class="panel-img-ph">${l}</div>`;
 
-  // Build retailer buttons
-  let retailers = '';
-  if(p.sephora_url) retailers += `<a href="${p.sephora_url}" target="_blank" class="r-btn r-primary"><div class="r-btn-left"><span>🖤</span><div><div class="r-name">Sephora</div><div class="r-tag">Tap to shop</div></div></div><span class="r-arrow">→</span></a>`;
-  if(p.amazon_url)  retailers += `<a href="${p.amazon_url}" target="_blank" class="r-btn"><div class="r-btn-left"><span>📦</span><div><div class="r-name">Amazon</div><div class="r-tag">Free shipping available</div></div></div><span class="r-arrow">→</span></a>`;
-  if(p.ebay_url)    retailers += `<a href="${p.ebay_url}" target="_blank" class="r-btn"><div class="r-btn-left"><span>🛒</span><div><div class="r-name">eBay</div><div class="r-tag">Compare prices</div></div></div><span class="r-arrow">→</span></a>`;
-  if(!retailers && p.affiliate_url) retailers += `<a href="${p.affiliate_url}" target="_blank" class="r-btn r-primary"><div class="r-btn-left"><span>🛍</span><div><div class="r-name">Shop Now</div><div class="r-tag">Best price</div></div></div><span class="r-arrow">→</span></a>`;
+  // Build retailer buttons — affiliate links open in new tab (correct for affiliate)
+  let btns = '';
+  if (p.sephora_url) btns += `<a href="${p.sephora_url}" target="_blank" rel="noopener" class="r-btn primary"><div class="r-left"><span>🖤</span><div><div>Sephora</div><span class="r-sub">Shop with affiliate link</span></div></div><span class="r-arrow">→</span></a>`;
+  if (p.amazon_url)  btns += `<a href="${p.amazon_url}"  target="_blank" rel="noopener" class="r-btn"><div class="r-left"><span>📦</span><div><div>Amazon</div><span class="r-sub">Free shipping available</span></div></div><span class="r-arrow">→</span></a>`;
+  if (p.ebay_url)    btns += `<a href="${p.ebay_url}"    target="_blank" rel="noopener" class="r-btn"><div class="r-left"><span>🛒</span><div><div>eBay</div><span class="r-sub">Compare prices</span></div></div><span class="r-arrow">→</span></a>`;
+  if (!btns) {
+    const shopUrl = p.affiliate_url || '#';
+    btns = `<a href="${shopUrl}" target="_blank" rel="noopener" class="r-btn primary"><div class="r-left"><span>🛍</span><div><div>Shop Now</div><span class="r-sub">Best available price</span></div></div><span class="r-arrow">→</span></a>`;
+  }
 
-  // Pros list
-  const pros = p.pros || [];
-  const prosList = pros.length ? `<ul class="pros-list">${pros.map(x=>`<li>${x}</li>`).join('')}</ul>` : '';
+  const pros = Array.isArray(p.pros) ? p.pros : [];
+  const prosList = pros.length ? `<div class="panel-sec">What we love</div><ul class="pros-list">${pros.map(x=>`<li>${x}</li>`).join('')}</ul>` : '';
+  const howTo = p.how_to_use ? `<div class="panel-sec">How to use</div><div class="how-to-box">${p.how_to_use}</div>` : '';
+  const desc = p.review_summary ? `<p class="panel-desc">${p.review_summary}</p>` : '';
 
   document.getElementById('panel-content').innerHTML = `
     <div class="panel-img">${imgHtml}</div>
     <div class="panel-body">
-      <div class="panel-brand">${p.brand||''}</div>
-      <div class="panel-name">${p.name||''}</div>
+      <div class="panel-brand">${p.brand || ''}</div>
+      <div class="panel-name">${p.name || ''}</div>
       <div class="panel-rating">
         <span class="panel-stars">${stars(p.rating)}</span>
-        <span class="panel-rcount">${p.rating||''} ${p.reviews?`· ${p.reviews} reviews`:''}</span>
+        <span class="panel-rcount">${p.rating || ''} ${p.reviews ? `· ${p.reviews} reviews` : ''}</span>
       </div>
-      ${p.badge?`<div class="panel-badge">${p.badge}</div>`:''}
-      ${p.review_summary?`<p class="panel-desc">${p.review_summary}</p>`:''}
-      ${pros.length?`<div class="panel-section-title">What we love</div>${prosList}`:''}
-      ${p.how_to_use?`<div class="panel-section-title">How to use</div><div class="how-to">${p.how_to_use}</div>`:''}
-      <div class="retailer-section">
-        <div class="panel-section-title">Where to buy</div>
-        <div class="retailer-btns">${retailers||'<p style="font-size:13px;color:var(--muted)">Links coming soon</p>'}</div>
-      </div>
+      ${p.badge ? `<div class="panel-badge">${p.badge}</div>` : ''}
+      ${desc}
+      ${prosList}
+      ${howTo}
+      <div class="panel-sec">Where to buy</div>
+      <div class="retailer-btns">${btns}</div>
     </div>`;
 
   document.getElementById('overlay').classList.add('open');
@@ -282,64 +284,82 @@ function openPanel(idx){
   document.body.style.overflow = 'hidden';
 }
 
-function closePanel(){
+function closePanel() {
   document.getElementById('overlay').classList.remove('open');
   document.getElementById('panel').classList.remove('open');
   document.body.style.overflow = '';
 }
 
-document.addEventListener('keydown', e => { if(e.key==='Escape') closePanel() });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
 
-function showSkeletons(){
-  document.getElementById('container').innerHTML = `<div class="product-grid">${Array(8).fill(`<div class="skel"><div class="skel-img"></div><div class="skel-body"><div class="skel-line s"></div><div class="skel-line"></div><div class="skel-line s"></div><div class="skel-line b"></div></div></div>`).join('')}</div>`;
+function showSkeletons() {
+  document.getElementById('container').innerHTML =
+    `<div class="product-grid">${Array(8).fill(`<div class="skel"><div class="skel-img"></div><div class="skel-body"><div class="skel-line s"></div><div class="skel-line"></div><div class="skel-line s"></div><div class="skel-line b"></div></div></div>`).join('')}</div>`;
 }
 
-function render(products){
+function render(products) {
   window._filtered = products;
   const c = document.getElementById('container');
   const nr = document.getElementById('no-results');
-  if(!products.length){c.innerHTML='';nr.style.display='block';return}
+  if (!products.length) { c.innerHTML = ''; nr.style.display = 'block'; return; }
   nr.style.display = 'none';
+
   const groups = {};
-  products.forEach(p=>{const k=(p.category||'other').replace(/\s+/g,'_');if(!groups[k])groups[k]=[];groups[k].push(p)});
+  products.forEach(p => {
+    const k = (p.category || 'other').replace(/\s+/g, '_');
+    if (!groups[k]) groups[k] = [];
+    groups[k].push(p);
+  });
+
   let globalIdx = 0;
-  c.innerHTML = Object.entries(groups).map(([cat,items])=>{
-    const label = CATS[cat]||cat.replace(/_/g,' ');
-    const cards = items.map((p,_)=>buildCard(p, globalIdx++)).join('');
-    return `<div class="section"><div class="section-head"><h2 class="section-title">${label}</h2><span class="section-count">${items.length} picks</span></div><div class="product-grid">${cards}</div></div>`;
+  c.innerHTML = Object.entries(groups).map(([cat, items]) => {
+    const label = CATS[cat] || cat.replace(/_/g, ' ');
+    const cards = items.map(p => buildCard(p, globalIdx++)).join('');
+    return `<div class="section">
+      <div class="section-head">
+        <h2 class="section-title">${label}</h2>
+        <span class="section-count">${items.length} picks</span>
+      </div>
+      <div class="product-grid">${cards}</div>
+    </div>`;
   }).join('');
+
   document.getElementById('total-count').textContent = products.length;
 }
 
-function filterCat(cat, btn){
+function filterCat(cat, btn) {
   currentCat = cat;
-  document.querySelectorAll('.cat-pill,.sicon').forEach(b=>b.classList.remove('active'));
-  if(btn) btn.classList.add('active');
+  document.querySelectorAll('.cat-pill').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.sicon').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
   applyFilters();
 }
 
-function applyFilters(){
+function applyFilters() {
   const q = document.getElementById('search').value.toLowerCase();
   let f = allProducts;
-  if(currentCat!=='all') f=f.filter(p=>(p.category||'').replace(/\s+/g,'_')===currentCat);
-  if(q) f=f.filter(p=>(p.name+' '+(p.brand||'')+' '+(p.category||'')).toLowerCase().includes(q));
+  if (currentCat !== 'all') f = f.filter(p => (p.category || '').replace(/\s+/g, '_') === currentCat);
+  if (q) f = f.filter(p => ((p.name || '') + ' ' + (p.brand || '') + ' ' + (p.category || '')).toLowerCase().includes(q));
   render(f);
 }
 
-async function load(){
+async function load() {
   showSkeletons();
-  try{
-    const r = await fetch('./products.json?v='+Date.now());
-    if(!r.ok) throw new Error();
-    allProducts = await r.json();
-  } catch {
+  try {
+    const r = await fetch('./products.json?v=' + Date.now());
+    if (!r.ok) throw new Error('no file');
+    const data = await r.json();
+    allProducts = data;
+    console.log('Loaded', allProducts.length, 'products');
+  } catch(e) {
+    console.log('Using sample data:', e.message);
     allProducts = [
-      {name:"Dermalogica Healthy Skin Kit",brand:"Dermalogica",category:"skincare",rating:4.8,reviews:"2.1k",image_url:"",badge:"Editor's Pick",review_summary:"A complete starter kit that delivers real results in just 2 weeks.",pros:["Gentle on sensitive skin","Travel-friendly sizes","Dermatologist tested"],how_to_use:"Cleanse morning and night, apply toner, finish with moisturiser.",sephora_url:"https://www.sephora.com/search?keyword=dermalogica",amazon_url:"https://www.amazon.com/s?k=dermalogica+healthy+skin+kit"},
-      {name:"The Ordinary Mini Discovery Set",brand:"The Ordinary",category:"skincare",rating:4.6,reviews:"890",image_url:"",review_summary:"Science-backed formulas at an unbeatable price point.",pros:["Evidence-based ingredients","Transparent labelling","Fragrance free"],amazon_url:"https://www.amazon.com/s?k=the+ordinary+discovery+set"},
-      {name:"Kayali Vanilla 28 Eau de Parfum",brand:"Kayali",category:"fragrance",rating:4.9,reviews:"1.2k",image_url:"",badge:"Best Seller",review_summary:"A warm, gourmand vanilla that lasts all day and turns heads.",pros:["12-hour longevity","Unisex appeal","Gorgeous bottle"],sephora_url:"https://www.sephora.com/search?keyword=kayali+vanilla"},
-      {name:"Charlotte Tilbury Pillow Talk Lipstick",brand:"Charlotte Tilbury",category:"makeup",rating:4.8,reviews:"5.6k",image_url:"",badge:"Top Rated",review_summary:"The universally flattering nude-pink that suits every skin tone.",pros:["Universally flattering","Moisturising formula","Iconic packaging"],sephora_url:"https://www.sephora.com/search?keyword=charlotte+tilbury+pillow+talk",amazon_url:"https://www.amazon.com/s?k=charlotte+tilbury+pillow+talk"},
-      {name:"Olaplex No.3 Hair Perfector",brand:"Olaplex",category:"haircare",rating:4.7,reviews:"12k",image_url:"",review_summary:"The original bond-building treatment that repairs damaged hair from within.",pros:["Repairs broken bonds","Works on all hair types","Salon results at home"],amazon_url:"https://www.amazon.com/s?k=olaplex+no+3"},
-      {name:"Gisou Honey Infused Hair Oil",brand:"Gisou",category:"haircare",rating:4.6,reviews:"3.4k",image_url:"",review_summary:"Lightweight hair oil that adds shine without weighing hair down.",pros:["Non-greasy formula","Natural honey extract","Beautiful scent"],sephora_url:"https://www.sephora.com/search?keyword=gisou+hair+oil"},
+      {name:"Rare Beauty Soft Pinch Liquid Blush",brand:"Rare Beauty",category:"makeup",rating:4.9,reviews:"15k",image_url:"",badge:"Best Seller",review_summary:"The blush that broke the internet — buildable, blendable, and impossibly pigmented.",pros:["Long-lasting 8+ hours","Dewy natural finish","Tiny amount goes far"],how_to_use:"Tap a small dot onto cheeks and blend with fingertips for a natural flush.",amazon_url:"https://www.amazon.com/s?k=rare+beauty+soft+pinch+blush",sephora_url:"https://www.sephora.com/search?keyword=rare+beauty+blush"},
+      {name:"Dermalogica Healthy Skin Kit",brand:"Dermalogica",category:"skincare",rating:4.8,reviews:"2.1k",image_url:"",badge:"Editor's Pick",review_summary:"A complete starter kit delivering real results in just 2 weeks of consistent use.",pros:["Gentle on sensitive skin","Travel-friendly sizes","Dermatologist tested"],how_to_use:"Cleanse morning and night, apply toner, finish with moisturiser.",amazon_url:"https://www.amazon.com/s?k=dermalogica+healthy+skin+kit",sephora_url:"https://www.sephora.com/search?keyword=dermalogica"},
+      {name:"Kayali Vanilla 28 Eau de Parfum",brand:"Kayali",category:"fragrance",rating:4.9,reviews:"1.2k",image_url:"",badge:"Top Rated",review_summary:"A warm gourmand vanilla that lasts all day and turns heads everywhere you go.",pros:["12-hour longevity","Universally loved scent","Gorgeous bottle"],how_to_use:"Spray on pulse points — wrists, neck, and behind ears.",sephora_url:"https://www.sephora.com/search?keyword=kayali+vanilla+28"},
+      {name:"Olaplex No.3 Hair Perfector",brand:"Olaplex",category:"haircare",rating:4.7,reviews:"12k",image_url:"",review_summary:"The bond-building treatment that repairs damaged hair from within.",pros:["Repairs broken bonds","Works on all hair types","Salon results at home"],how_to_use:"Apply to damp hair, leave for 10 minutes, then shampoo and condition as normal.",amazon_url:"https://www.amazon.com/s?k=olaplex+no+3",sephora_url:"https://www.sephora.com/search?keyword=olaplex+no+3"},
+      {name:"Charlotte Tilbury Pillow Talk Lipstick",brand:"Charlotte Tilbury",category:"makeup",rating:4.8,reviews:"5.6k",image_url:"",badge:"Icon",review_summary:"The universally flattering nude-pink that suits every skin tone perfectly.",pros:["Universally flattering","Moisturising formula","Iconic packaging"],how_to_use:"Apply directly to lips. Layer for more intensity.",amazon_url:"https://www.amazon.com/s?k=charlotte+tilbury+pillow+talk",sephora_url:"https://www.sephora.com/search?keyword=charlotte+tilbury+pillow+talk"},
+      {name:"Gisou Honey Infused Hair Oil",brand:"Gisou",category:"haircare",rating:4.6,reviews:"3.4k",image_url:"",review_summary:"Lightweight hair oil that adds brilliant shine without any greasiness.",pros:["Non-greasy formula","Natural honey extract","Smells incredible"],how_to_use:"Apply a few drops to damp or dry hair, focusing on mid-lengths to ends.",sephora_url:"https://www.sephora.com/search?keyword=gisou+hair+oil"},
     ];
   }
   render(allProducts);

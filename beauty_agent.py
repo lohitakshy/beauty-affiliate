@@ -26,8 +26,7 @@ AFFILIATE_IDS = {
 }
 
 CATEGORIES = [
-    "skincare", "makeup", "fragrance", "haircare",
-    "body care", "nail care", "beauty tools", "wellness beauty"
+    "skincare"
 ]
 
 PRODUCTS_PER_CATEGORY = 10
@@ -91,7 +90,7 @@ Keys to produce:
 Return ONLY valid JSON, no markdown, no extra text."""
 
     message = client.messages.create(
-        model="claude-sonnet-4-20250514",
+        model="claude-sonnet-4-6",
         max_tokens=1000,
         messages=[{"role": "user", "content": prompt}]
     )
@@ -474,7 +473,7 @@ def run_daily_agent():
             continue
 
         # Process top 3 per category per day (rate limit protection)
-        for product in products[:3]:
+        for product in products[:1]:
             print(f"  Processing: {product['name'][:50]}")
 
             # 2. AI review + scripts
@@ -498,9 +497,13 @@ def run_daily_agent():
                 )
 
             all_results.append({
-                "product": product["name"],
-                "category": category,
-                "affiliate_links": affiliate_links,
+                   	"product": product["name"],
+			"category": category,
+    			"brand": product.get("brand", ""),
+    			"rating": product.get("rating", 0),
+    			"reviews": product.get("reviews", 0),
+    			"image_url": product.get("image_url", ""),
+    			"affiliate_links": affiliate_links,
             })
 
             time.sleep(2)  # Polite delay between API calls

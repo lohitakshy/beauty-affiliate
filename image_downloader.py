@@ -115,7 +115,7 @@ def auto_git_push():
     import subprocess
 
     cmds = [
-        ["git", "add", "images/", "products.json", "docs/"],
+        ["git", "add", "-A"],
         ["git", "commit", "-m", f"auto: update products and images"],
         ["git", "push", "origin", "main"],
     ]
