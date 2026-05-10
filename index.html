@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nacré — The Luxury Beauty Edit</title>
+<meta name="description" content="Curated luxury beauty finds. The finest skincare, makeup, fragrance and haircare — reviewed, compared and linked.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:       #080807;
+    --bg2:      #111110;
+    --bg3:      #1A1917;
+    --pearl:    #E8E0D0;
+    --pearl2:   #C4B89A;
+    --gold:     #C9A96E;
+    --muted:    #6B6560;
+    --border:   #222120;
+    --white:    #F5F0E8;
+    --radius:   12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0 }
+
+  body {
+    background: var(--bg);
+    color: var(--pearl);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    cursor: default;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(8,8,7,.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2.5rem;
+    height: 60px;
+  }
+
+  .logo {
+    font-family: 'Cormorant', serif;
+    font-size: 1.6rem;
+    font-weight: 300;
+    letter-spacing: .15em;
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .logo span { color: var(--gold); }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .search-wrap {
+    position: relative;
+  }
+
+  #search {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 40px;
+    padding: 8px 16px 8px 36px;
+    color: var(--pearl);
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    width: 220px;
+    outline: none;
+    transition: border-color .2s, width .3s;
+  }
+
+  #search::placeholder { color: var(--muted) }
+  #search:focus { border-color: var(--gold); width: 280px }
+
+  .search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  .instagram-link {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: .05em;
+    transition: color .2s;
+  }
+  .instagram-link:hover { color: var(--gold) }
+
+  /* ── HERO ── */
+  .hero {
+    text-align: center;
+    padding: 5rem 2rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(201,169,110,.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(201,169,110,.3);
+    padding: 4px 16px;
+    border-radius: 40px;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant', serif;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 1rem;
+    letter-spacing: -.01em;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 480px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ── CATEGORIES ── */
+  .cats {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0 2rem 3rem;
+  }
+
+  .cat-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 40px;
+    padding: 8px 20px;
+    color: var(--muted);
+    font-family: 'Outfit', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: .06em;
+    cursor: pointer;
+    transition: all .2s;
+  }
+
+  .cat-btn:hover, .cat-btn.active {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--bg);
+  }
+
+  /* ── GRID ── */
+  .grid-wrap {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem 6rem;
+  }
+
+  .section-title {
+    font-family: 'Cormorant', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--muted);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 4rem;
+  }
+
+  .product-card {
+    background: var(--bg);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    transition: background .2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .product-card:hover { background: var(--bg2) }
+
+  .product-card:hover .card-actions { opacity: 1; transform: translateY(0) }
+
+  .card-img {
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: var(--bg3);
+    position: relative;
+  }
+
+  .card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .4s ease;
+  }
+
+  .product-card:hover .card-img img { transform: scale(1.04) }
+
+  .card-img-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant', serif;
+    font-size: 2rem;
+    color: var(--muted);
+    letter-spacing: .1em;
+  }
+
+  .card-body {
+    padding: 16px 18px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .card-category {
+    font-size: 10px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 400;
+  }
+
+  .card-name {
+    font-family: 'Cormorant', serif;
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.3;
+  }
+
+  .card-brand {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: .05em;
+  }
+
+  .card-rating {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 2px;
+  }
+
+  .stars { color: var(--gold); font-size: 11px; letter-spacing: 1px }
+  .rating-num { font-size: 11px; color: var(--muted) }
+
+  .card-actions {
+    padding: 0 18px 16px;
+    display: flex;
+    gap: 8px;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: all .2s;
+  }
+
+  .btn-primary {
+    flex: 1;
+    background: var(--gold);
+    color: var(--bg);
+    border: none;
+    border-radius: 6px;
+    padding: 9px 14px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: .05em;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: opacity .15s;
+  }
+
+  .btn-primary:hover { opacity: .85 }
+
+  .btn-secondary {
+    background: var(--bg3);
+    color: var(--pearl2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 9px 14px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: border-color .15s;
+    white-space: nowrap;
+  }
+
+  .btn-secondary:hover { border-color: var(--muted) }
+
+  /* ── EMPTY STATE ── */
+  .empty {
+    text-align: center;
+    padding: 5rem 2rem;
+    color: var(--muted);
+  }
+
+  .empty h3 {
+    font-family: 'Cormorant', serif;
+    font-size: 1.5rem;
+    color: var(--pearl2);
+    margin-bottom: .5rem;
+  }
+
+  /* ── NO RESULTS ── */
+  #no-results {
+    display: none;
+    text-align: center;
+    padding: 4rem;
+    color: var(--muted);
+    font-family: 'Cormorant', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant', serif;
+    font-size: 1.1rem;
+    letter-spacing: .15em;
+    color: var(--muted);
+  }
+
+  .footer-note {
+    font-size: 11px;
+    color: var(--muted);
+    max-width: 400px;
+    line-height: 1.6;
+  }
+
+  /* ── LOADING ── */
+  .loading {
+    text-align: center;
+    padding: 4rem;
+    color: var(--muted);
+    font-family: 'Cormorant', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+  }
+
+  @keyframes pulse { 0%,100%{opacity:.4} 50%{opacity:1} }
+  .loading { animation: pulse 2s infinite }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    nav { padding: 0 1.25rem }
+    .hero { padding: 3rem 1.25rem 2rem }
+    .grid-wrap { padding: 0 1.25rem 4rem }
+    #search { width: 160px }
+    #search:focus { width: 200px }
+    .product-grid { grid-template-columns: repeat(2, 1fr) }
+    footer { flex-direction: column; padding: 1.5rem 1.25rem }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">NACR<span>É</span></a>
+  <div class="nav-right">
+    <div class="search-wrap">
+      <span class="search-icon">⌕</span>
+      <input type="text" id="search" placeholder="Search products...">
+    </div>
+    <a href="https://instagram.com/maisonglow" target="_blank" class="instagram-link">Instagram ↗</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-tag">The Luxury Beauty Edit</div>
+  <h1>Beauty finds<br>worth <em>obsessing over</em></h1>
+  <p class="hero-sub">Curated reviews, honest comparisons, and the best prices across Sephora, Amazon, and beyond.</p>
+</section>
+
+<div class="cats" id="cats">
+  <button class="cat-btn active" onclick="filterCat('all', this)">All</button>
+  <button class="cat-btn" onclick="filterCat('skincare', this)">Skincare</button>
+  <button class="cat-btn" onclick="filterCat('makeup', this)">Makeup</button>
+  <button class="cat-btn" onclick="filterCat('fragrance', this)">Fragrance</button>
+  <button class="cat-btn" onclick="filterCat('haircare', this)">Haircare</button>
+  <button class="cat-btn" onclick="filterCat('body_care', this)">Body Care</button>
+  <button class="cat-btn" onclick="filterCat('nail_care', this)">Nails</button>
+  <button class="cat-btn" onclick="filterCat('beauty_tools', this)">Tools</button>
+  <button class="cat-btn" onclick="filterCat('wellness_beauty', this)">Wellness</button>
+</div>
+
+<div class="grid-wrap">
+  <div id="product-container">
+    <div class="loading">Loading the edit…</div>
+  </div>
+  <div id="no-results">No products found for that search.</div>
+</div>
+
+<footer>
+  <div class="footer-logo">NACRÉ</div>
+  <div class="footer-note">This site contains affiliate links. We may earn a commission at no extra cost to you when you shop through our links. We only feature products we genuinely love.</div>
+</footer>
+
+<script>
+let allProducts = [];
+let currentCat = 'all';
+
+// Stars renderer
+function stars(rating) {
+  const r = parseFloat(rating) || 4;
+  return '★'.repeat(Math.round(r)) + '☆'.repeat(5 - Math.round(r));
+}
+
+// Render all products grouped by category
+function render(products) {
+  const container = document.getElementById('product-container');
+  const noResults = document.getElementById('no-results');
+
+  if (products.length === 0) {
+    container.innerHTML = '';
+    noResults.style.display = 'block';
+    return;
+  }
+
+  noResults.style.display = 'none';
+
+  // Group by category
+  const groups = {};
+  products.forEach(p => {
+    const cat = p.category || 'other';
+    if (!groups[cat]) groups[cat] = [];
+    groups[cat].push(p);
+  });
+
+  let html = '';
+  for (const [cat, items] of Object.entries(groups)) {
+    const catLabel = cat.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+    html += `<div class="section-title"><span>${catLabel}</span><span style="font-size:11px;letter-spacing:.05em">${items.length} picks</span></div>`;
+    html += `<div class="product-grid">`;
+    items.forEach(p => {
+      const imgTag = p.image_url
+        ? `<img src="${p.image_url}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'">`
+        : `<div class="card-img-placeholder">N</div>`;
+
+      const reviewUrl = p.review_url || '#';
+      const affiliateUrl = p.affiliate_url || p.amazon_url || '#';
+
+      html += `
+        <div class="product-card">
+          <div class="card-img">${imgTag}</div>
+          <div class="card-body">
+            <div class="card-category">${(p.category || '').replace(/_/g,' ')}</div>
+            <div class="card-name">${p.name}</div>
+            <div class="card-brand">${p.brand || ''}</div>
+            <div class="card-rating">
+              <span class="stars">${stars(p.rating)}</span>
+              <span class="rating-num">${p.rating || ''} ${p.reviews ? `· ${p.reviews} reviews` : ''}</span>
+            </div>
+          </div>
+          <div class="card-actions">
+            <a href="${affiliateUrl}" target="_blank" rel="noopener" class="btn-primary">Shop Now</a>
+            <a href="${reviewUrl}" class="btn-secondary">Review</a>
+          </div>
+        </div>`;
+    });
+    html += `</div>`;
+  }
+
+  container.innerHTML = html;
+}
+
+// Filter by category
+function filterCat(cat, btn) {
+  currentCat = cat;
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilters();
+}
+
+// Search + category filter
+function applyFilters() {
+  const query = document.getElementById('search').value.toLowerCase();
+  let filtered = allProducts;
+
+  if (currentCat !== 'all') {
+    filtered = filtered.filter(p => (p.category || '') === currentCat);
+  }
+
+  if (query) {
+    filtered = filtered.filter(p =>
+      (p.name || '').toLowerCase().includes(query) ||
+      (p.brand || '').toLowerCase().includes(query) ||
+      (p.category || '').toLowerCase().includes(query)
+    );
+  }
+
+  render(filtered);
+}
+
+// Load products from agent-generated JSON
+async function loadProducts() {
+  try {
+    const res = await fetch('./products.json');
+    if (!res.ok) throw new Error('No products file yet');
+    allProducts = await res.json();
+    render(allProducts);
+  } catch (e) {
+    // Fallback: show sample products so page never looks empty
+    allProducts = [
+      { name: "Dermalogica Healthy Skin Kit", brand: "Dermalogica", category: "skincare", rating: 4.8, reviews: "2.1k", image_url: "", affiliate_url: "https://nacre.beauty/docs/skincare/dermalogica-discover-healthy-skin-kit.html", review_url: "https://nacre.beauty/docs/skincare/dermalogica-discover-healthy-skin-kit.html" },
+      { name: "The Ordinary Mini Discovery Set", brand: "The Ordinary", category: "skincare", rating: 4.6, reviews: "890", image_url: "", affiliate_url: "#", review_url: "https://nacre.beauty/docs/skincare/the-ordinary-the-mini-discovery-set.html" },
+      { name: "Youth To The People Superfood Cleanser", brand: "Youth To The People", category: "skincare", rating: 4.7, reviews: "3.4k", image_url: "", affiliate_url: "#", review_url: "https://nacre.beauty/docs/skincare/youth-to-the-people-superfood-cleanser.html" },
+      { name: "Kayali Vanilla 28 Eau de Parfum", brand: "Kayali", category: "fragrance", rating: 4.9, reviews: "1.2k", image_url: "", affiliate_url: "#", review_url: "#" },
+    ];
+    render(allProducts);
+  }
+}
+
+// Search listener
+document.getElementById('search').addEventListener('input', applyFilters);
+
+// Init
+loadProducts();
+</script>
+</body>
+</html>
