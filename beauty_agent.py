@@ -8,6 +8,8 @@ import os, json, time, schedule, requests
 from datetime import datetime
 from anthropic import Anthropic
 from dotenv import load_dotenv
+from image_downloader import download_all_images, auto_git_push
+from generate_products_json import build_products_json
 
 load_dotenv()
 
@@ -89,7 +91,7 @@ Keys to produce:
 Return ONLY valid JSON, no markdown, no extra text."""
 
     message = client.messages.create(
-        model="claude-sonnet-4-6",
+        model="claude-sonnet-4-20250514",
         max_tokens=1000,
         messages=[{"role": "user", "content": prompt}]
     )
@@ -506,14 +508,26 @@ def run_daily_agent():
 
             time.sleep(2)  # Polite delay between API calls
 
+    # Download all images locally so they never expire
+    print("\nDownloading product images...")
+    all_results = download_all_images(all_results)
+
     # Save daily run summary
     summary_file = f"runs/run_{datetime.now().strftime('%Y%m%d_%H%M')}.json"
     os.makedirs("runs", exist_ok=True)
     with open(summary_file, "w") as f:
         json.dump(all_results, f, indent=2)
 
-    print(f"\nDone. {len(all_results)} products processed.")
-    print(f"Summary saved to {summary_file}")
+    # Regenerate products.json for the homepage
+    print("\nUpdating products.json for nacre.beauty...")
+    build_products_json()
+
+    # Auto commit and push everything live to nacre.beauty
+    print("\nPushing to nacre.beauty...")
+    auto_git_push()
+
+    print(f"\nDone. {len(all_results)} products live on nacre.beauty")
+    print(f"Summary: {summary_file}")
 
 # ── SCHEDULER ─────────────────────────────────────────────────────────────────
 
