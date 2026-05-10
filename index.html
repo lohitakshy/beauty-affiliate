@@ -32,15 +32,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);dis
 /* ══════════════ HOME VIEW ══════════════ */
 #home-view{display:flex;flex-direction:column;flex:1}
 
-/* HERO */
-.hero{background:var(--white);padding:2.5rem 1.5rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;border-bottom:1px solid var(--border)}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,3rem);font-weight:400;line-height:1.15;margin-bottom:.75rem}
-.hero h1 em{font-style:italic;color:var(--gold)}
-.hero p{font-size:14px;color:var(--muted);max-width:380px;line-height:1.7}
-.hero-stats{display:flex;gap:2rem;flex-shrink:0}
-.stat{text-align:center}
-.stat-n{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:600}
-.stat-l{font-size:11px;color:var(--muted);margin-top:2px}
+
 
 /* CATEGORY BAR */
 .cat-bar{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;height:52px;align-items:center}
@@ -248,15 +240,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);dis
 
   <!-- ══ HOME VIEW ══ -->
   <div id="home-view">
-    <div class="hero">
-      <div>
-        <h1>Discover beauty<br>worth <em>loving</em></h1>
-        <p>Hand-picked luxury beauty finds from Sephora, Amazon and Glossier — reviewed, compared, and linked for you.</p>
-      </div>
-      <div class="hero-stats">
-        <div class="stat"><div class="stat-n" id="total-count">—</div><div class="stat-l">Products</div></div>
-        <div class="stat"><div class="stat-n">8</div><div class="stat-l">Categories</div></div>
-        <div class="stat"><div class="stat-n">5</div><div class="stat-l">Retailers</div></div>
+    <div class="hero-shop">
+      <div class="hero-floats" id="hero-floats"></div>
+      <div class="hero-center">
+        <div class="hero-brand">nacré</div>
+        <p class="hero-tagline">Your luxury beauty edit</p>
       </div>
     </div>
 
@@ -635,11 +623,47 @@ async function load() {
     ];
   }
   render(allProducts);
-  document.getElementById('total-count').textContent = allProducts.length;
+  buildHeroFloats(allProducts);
 }
 
 document.getElementById('search').addEventListener('input', applyFilters);
-load();
+
+function buildHeroFloats(products) {
+  const container = document.getElementById('hero-floats');
+  if (!container || !products.length) return;
+  
+  const picks = products.filter(p => p.image_url).slice(0, 5);
+  if (!picks.length) return;
+
+  const positions = [
+    {left:'4%', top:'10%', w:110, delay:0},
+    {left:'18%', top:'55%', w:90, delay:1.5},
+    {left:'72%', top:'8%', w:100, delay:0.8},
+    {left:'82%', top:'52%', w:105, delay:2},
+    {left:'40%', top:'5%', w:85, delay:1},
+  ];
+
+  container.innerHTML = picks.map((p, i) => {
+    const pos = positions[i % positions.length];
+    const src = p.image_url;
+    const l = (p.name||'N')[0].toUpperCase();
+    const imgHtml = src
+      ? `<img src="${src}" onerror="this.outerHTML='<div class=float-card-ph style=font-size:1.5rem>${l}</div>'">`
+      : `<div class="float-card-ph" style="font-size:1.5rem">${l}</div>`;
+    return `<div class="float-card" style="left:${pos.left};top:${pos.top};width:${pos.w}px;animation-delay:${pos.delay}s">
+      <div style="height:${pos.w}px">${imgHtml}</div>
+      <div class="float-info">
+        <div class="float-name">${p.name||''}</div>
+        <div class="float-stars">★★★★★</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+load().then ? load() : load();
+
+// Override render to also build floats
+const _origLoad = load;
 </script>
 </body>
 </html>
