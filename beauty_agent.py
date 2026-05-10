@@ -26,7 +26,8 @@ AFFILIATE_IDS = {
 }
 
 CATEGORIES = [
-    "skincare"
+    "skincare", "makeup", "fragrance", "haircare",
+    "body care", "nail care", "beauty tools", "wellness beauty"
 ]
 
 PRODUCTS_PER_CATEGORY = 10
@@ -63,6 +64,7 @@ def find_trending_products(category):
             "rating":    item.get("rating", 0),
             "reviews":   item.get("reviews", 0),
             "image_url": item.get("thumbnail", ""),
+	    "extra_images": item.get("thumbnails", [])[:3],
             "category":  category,
         })
     return products
@@ -473,7 +475,7 @@ def run_daily_agent():
             continue
 
         # Process top 3 per category per day (rate limit protection)
-        for product in products[:1]:
+        for product in products[:3]:
             print(f"  Processing: {product['name'][:50]}")
 
             # 2. AI review + scripts
