@@ -38,7 +38,7 @@ BUFFER_PROFILE_ID = os.getenv("BUFFER_PROFILE_ID")
 
 # ── STEP 1: PRODUCT DISCOVERY ────────────────────────────────────────────────
 
-def find_trending_products(category: str) -> list[dict]:
+def find_trending_products(category):
     """
     Uses SerpAPI to pull trending/bestselling products from Google Shopping.
     Returns a list of product dicts with name, brand, price, image_url.
@@ -70,7 +70,7 @@ def find_trending_products(category: str) -> list[dict]:
 
 # ── STEP 2: AI REVIEW SUMMARY ────────────────────────────────────────────────
 
-def generate_review_summary(product: dict) -> dict:
+def generate_review_summary(product):
     """
     Asks Claude to write a compelling review summary and video script for the product.
     """
@@ -107,7 +107,7 @@ Return ONLY valid JSON, no markdown, no extra text."""
 
 # ── STEP 3: AFFILIATE LINK BUILDER ──────────────────────────────────────────
 
-def build_affiliate_links(product_name: str, brand: str) -> dict:
+def build_affiliate_links(product_name, brand):
     """
     Constructs affiliate URLs for each retailer.
     In production, replace with each retailer's deep-link API.
@@ -157,7 +157,7 @@ def build_affiliate_links(product_name: str, brand: str) -> dict:
 
 # ── STEP 4: GENERATE PRODUCT PAGE HTML ──────────────────────────────────────
 
-def generate_product_page(product: dict, ai_content: dict, affiliate_links: dict) -> str:
+def generate_product_page(product, ai_content, affiliate_links):
     """
     Generates a standalone HTML product page — your Linktree replacement.
     Save to /docs/{category}/{slug}.html and host on GitHub Pages or Netlify for free.
@@ -396,7 +396,7 @@ def generate_product_page(product: dict, ai_content: dict, affiliate_links: dict
 
 # ── STEP 5: QUEUE VIDEO CREATION ─────────────────────────────────────────────
 
-def queue_video_creation(product: dict, ai_content: dict):
+def queue_video_creation(product, ai_content):
     """
     Writes a video job to a queue file.
     A separate process (or Make.com webhook) picks this up and:
@@ -487,10 +487,7 @@ def run_daily_agent():
             # 3. Build affiliate links
             affiliate_links = build_affiliate_links(product["name"], product.get("brand", ""))
 
-            # 4. Generate product page
-            generate_product_page(product, ai_content, affiliate_links)
-
-            # 5. Queue video
+            # 4. Queue video
             queue_video_creation(product, ai_content)
 
             # 6. Post a teaser image now (video posts after rendering)

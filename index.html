@@ -4,155 +4,171 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nacré — Luxury Beauty Edit</title>
-<meta name="description" content="Curated luxury beauty finds. Skincare, makeup, fragrance and haircare reviewed and linked.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0 }
-:root {
-  --white:#FFFFFF; --bg:#F7F5F2; --border:#EBEBEB;
-  --text:#1A1A1A; --muted:#888; --gold:#B8860B;
-  --radius:16px; --sidebar:72px;
-}
-body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--text); display:flex; min-height:100vh }
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--white:#fff;--bg:#F5F4F2;--border:#E8E8E8;--text:#111;--muted:#888;--gold:#C9A96E;--sidebar:68px;--radius:16px}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);display:flex;min-height:100vh;overflow-x:hidden}
 
 /* SIDEBAR */
-.sidebar { width:var(--sidebar); background:var(--white); border-right:1px solid var(--border); position:fixed; top:0;left:0;bottom:0; display:flex; flex-direction:column; align-items:center; padding:20px 0; gap:6px; z-index:100 }
-.sidebar-logo { font-family:'Playfair Display',serif; font-size:12px; font-weight:500; letter-spacing:.12em; color:var(--text); writing-mode:vertical-rl; transform:rotate(180deg); margin-bottom:16px; text-decoration:none }
-.nav-icon { width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:18px; cursor:pointer; transition:background .15s; color:var(--muted); text-decoration:none; border:none; background:transparent }
-.nav-icon:hover,.nav-icon.active { background:var(--bg); color:var(--text) }
+.sidebar{width:var(--sidebar);background:var(--white);border-right:1px solid var(--border);position:fixed;top:0;left:0;bottom:0;display:flex;flex-direction:column;align-items:center;padding:16px 0;gap:4px;z-index:200}
+.logo-mark{font-family:'Playfair Display',serif;font-size:11px;letter-spacing:.15em;color:var(--text);writing-mode:vertical-rl;transform:rotate(180deg);margin-bottom:20px;text-decoration:none;font-weight:600}
+.sicon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;transition:background .15s;border:none;background:transparent;color:var(--muted)}
+.sicon:hover,.sicon.active{background:var(--bg);color:var(--text)}
 
 /* MAIN */
-.main { margin-left:var(--sidebar); flex:1; display:flex; flex-direction:column }
+.main{margin-left:var(--sidebar);flex:1;min-height:100vh}
 
 /* TOPBAR */
-.topbar { background:var(--white); border-bottom:1px solid var(--border); padding:0 2rem; height:64px; display:flex; align-items:center; gap:16px; position:sticky; top:0; z-index:50 }
-.search-box { flex:1; max-width:560px; position:relative }
-.search-box input { width:100%; background:var(--bg); border:1px solid var(--border); border-radius:40px; padding:11px 20px 11px 44px; font-family:'DM Sans',sans-serif; font-size:14px; color:var(--text); outline:none; transition:border-color .2s }
-.search-box input:focus { border-color:#999 }
-.search-box input::placeholder { color:var(--muted) }
-.search-icon { position:absolute; left:16px; top:50%; transform:translateY(-50%); color:var(--muted); font-size:16px; pointer-events:none }
-.insta-btn { display:flex; align-items:center; gap:8px; background:var(--text); color:var(--white); border:none; border-radius:40px; padding:9px 18px; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:500; cursor:pointer; text-decoration:none; margin-left:auto; transition:opacity .15s }
-.insta-btn:hover { opacity:.85 }
+.topbar{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.5rem;height:60px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:100}
+.search-wrap{flex:1;max-width:520px;position:relative}
+.search-wrap input{width:100%;background:var(--bg);border:1.5px solid transparent;border-radius:40px;padding:10px 20px 10px 42px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);outline:none;transition:border-color .2s}
+.search-wrap input:focus{border-color:#ccc}
+.search-wrap input::placeholder{color:var(--muted)}
+.search-icon{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:15px;pointer-events:none}
+.follow-btn{margin-left:auto;background:var(--text);color:var(--white);border:none;border-radius:40px;padding:9px 20px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;text-decoration:none;white-space:nowrap;transition:opacity .15s}
+.follow-btn:hover{opacity:.8}
 
 /* HERO */
-.hero-banner { background:var(--white); border-bottom:1px solid var(--border); padding:3rem 2rem; display:flex; align-items:center; justify-content:space-between; gap:2rem }
-.hero-text h1 { font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,3.5rem); font-weight:400; line-height:1.1; margin-bottom:.75rem }
-.hero-text h1 em { font-style:italic; color:var(--gold) }
-.hero-text p { font-size:15px; color:var(--muted); max-width:420px; line-height:1.7 }
-.hero-stats { display:flex; gap:2rem; flex-shrink:0 }
-.stat { text-align:center }
-.stat-num { font-family:'Playfair Display',serif; font-size:2rem; font-weight:500 }
-.stat-label { font-size:12px; color:var(--muted); margin-top:2px }
+.hero{background:var(--white);padding:2.5rem 1.5rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;border-bottom:1px solid var(--border)}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,3rem);font-weight:400;line-height:1.15;margin-bottom:.75rem}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero p{font-size:14px;color:var(--muted);max-width:380px;line-height:1.7}
+.hero-stats{display:flex;gap:2rem;flex-shrink:0}
+.stat{text-align:center}
+.stat-n{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:600}
+.stat-l{font-size:11px;color:var(--muted);margin-top:2px}
 
 /* CATEGORY BAR */
-.cat-bar { background:var(--white); border-bottom:1px solid var(--border); padding:0 2rem; display:flex; align-items:center; gap:6px; overflow-x:auto; scrollbar-width:none; height:56px }
-.cat-bar::-webkit-scrollbar { display:none }
-.cat-pill { display:flex; align-items:center; gap:6px; white-space:nowrap; padding:7px 16px; border-radius:40px; border:1px solid var(--border); background:transparent; font-family:'DM Sans',sans-serif; font-size:13px; color:var(--muted); cursor:pointer; transition:all .15s; flex-shrink:0 }
-.cat-pill:hover { border-color:#999; color:var(--text) }
-.cat-pill.active { background:var(--text); border-color:var(--text); color:var(--white) }
+.cat-bar{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;height:52px;align-items:center}
+.cat-bar::-webkit-scrollbar{display:none}
+.cat-pill{display:flex;align-items:center;gap:6px;white-space:nowrap;padding:6px 16px;border-radius:40px;border:1.5px solid var(--border);background:transparent;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--muted);cursor:pointer;transition:all .15s;flex-shrink:0}
+.cat-pill:hover{border-color:#999;color:var(--text)}
+.cat-pill.active{background:var(--text);border-color:var(--text);color:var(--white)}
 
 /* CONTENT */
-.content { padding:2rem }
-.section { margin-bottom:3rem }
-.section-head { display:flex; align-items:baseline; justify-content:space-between; margin-bottom:1.25rem }
-.section-title { font-family:'Playfair Display',serif; font-size:1.4rem; font-weight:400 }
-.section-count { font-size:13px; color:var(--muted) }
-
-/* GRID */
-.product-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:16px }
+.content{padding:1.5rem}
+.section{margin-bottom:2.5rem}
+.section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1rem}
+.section-title{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:400}
+.section-count{font-size:12px;color:var(--muted)}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
 
 /* CARD */
-.product-card { background:var(--white); border-radius:var(--radius); overflow:hidden; border:1px solid var(--border); transition:box-shadow .2s,transform .2s; cursor:pointer; position:relative }
-.product-card:hover { box-shadow:0 8px 32px rgba(0,0,0,.08); transform:translateY(-2px) }
-.card-img { aspect-ratio:1; background:var(--bg); overflow:hidden; position:relative }
-.card-img img { width:100%; height:100%; object-fit:cover; transition:transform .4s }
-.product-card:hover .card-img img { transform:scale(1.05) }
-.img-placeholder { width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; background:linear-gradient(135deg,#f5f0e8 0%,#ede8e0 100%) }
-.p-initial { font-family:'Playfair Display',serif; font-size:3rem; color:#C4B89A; font-style:italic }
-.p-name { font-size:11px; color:#B0A898; text-align:center; padding:0 1rem; line-height:1.4 }
-.card-badge { position:absolute; top:10px; left:10px; background:var(--white); border-radius:40px; padding:3px 10px; font-size:10px; font-weight:500; color:var(--gold); border:1px solid rgba(184,134,11,.2) }
-.wishlist { position:absolute; top:10px; right:10px; width:32px; height:32px; background:var(--white); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px; border:1px solid var(--border); cursor:pointer; opacity:0; transition:opacity .2s }
-.product-card:hover .wishlist { opacity:1 }
-.card-body { padding:14px 16px }
-.card-brand { font-size:11px; font-weight:500; color:var(--muted); letter-spacing:.04em; text-transform:uppercase; margin-bottom:4px }
-.card-name { font-size:14px; color:var(--text); line-height:1.4; margin-bottom:8px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden }
-.card-rating { display:flex; align-items:center; gap:5px; margin-bottom:12px }
-.stars { color:#F5A623; font-size:12px; letter-spacing:1px }
-.rating-count { font-size:11px; color:var(--muted) }
-.card-actions { display:grid; grid-template-columns:1fr auto; gap:8px }
-.btn-shop { background:var(--text); color:var(--white); border:none; border-radius:10px; padding:10px; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:500; cursor:pointer; text-decoration:none; text-align:center; transition:background .15s }
-.btn-shop:hover { background:#333 }
-.btn-review { background:var(--bg); color:var(--text); border:1px solid var(--border); border-radius:10px; padding:10px 14px; font-family:'DM Sans',sans-serif; font-size:13px; cursor:pointer; text-decoration:none; text-align:center; transition:border-color .15s; white-space:nowrap }
-.btn-review:hover { border-color:#999 }
-.retailer-pills { display:flex; gap:6px; padding:10px 16px; border-top:1px solid var(--border); overflow-x:auto; scrollbar-width:none }
-.retailer-pills::-webkit-scrollbar { display:none }
-.retailer-pill { display:flex; align-items:center; gap:4px; font-size:11px; padding:4px 10px; border-radius:40px; border:1px solid var(--border); color:var(--muted); text-decoration:none; white-space:nowrap; transition:all .15s; flex-shrink:0 }
-.retailer-pill:hover { border-color:var(--text); color:var(--text) }
+.card{background:var(--white);border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);cursor:pointer;transition:box-shadow .2s,transform .2s;position:relative}
+.card:hover{box-shadow:0 6px 24px rgba(0,0,0,.08);transform:translateY(-2px)}
+.card-img{aspect-ratio:1;background:var(--bg);overflow:hidden;position:relative}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:transform .35s}
+.card:hover .card-img img{transform:scale(1.05)}
+.img-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#f5f0ea,#ede8e0)}
+.ph-letter{font-family:'Playfair Display',serif;font-size:2.8rem;color:#C4B49A;font-style:italic}
+.ph-name{font-size:11px;color:#B0A898;text-align:center;padding:0 .75rem;line-height:1.4}
+.card-badge{position:absolute;top:10px;left:10px;background:var(--white);border-radius:40px;padding:3px 10px;font-size:10px;font-weight:500;color:var(--gold);border:1px solid rgba(201,169,110,.3)}
+.card-body{padding:12px 14px}
+.card-brand{font-size:10px;font-weight:600;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+.card-name{font-size:13px;color:var(--text);line-height:1.4;margin-bottom:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card-stars{color:#F5A623;font-size:11px;letter-spacing:1px}
+.card-rating-row{display:flex;align-items:center;gap:5px;margin-bottom:10px}
+.card-rcount{font-size:11px;color:var(--muted)}
+.card-btn{width:100%;background:var(--text);color:var(--white);border:none;border-radius:10px;padding:9px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:background .15s}
+.card-btn:hover{background:#333}
+
+/* SLIDE-IN PANEL */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:300;opacity:0;pointer-events:none;transition:opacity .3s}
+.overlay.open{opacity:1;pointer-events:all}
+.panel{position:fixed;top:0;right:0;bottom:0;width:min(560px,100vw);background:var(--white);z-index:301;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);overflow-y:auto;display:flex;flex-direction:column}
+.panel.open{transform:translateX(0)}
+.panel-close{position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;background:var(--bg);border:none;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;color:var(--muted);z-index:10;transition:background .15s}
+.panel-close:hover{background:var(--border)}
+.panel-img{width:100%;aspect-ratio:1;background:var(--bg);overflow:hidden;flex-shrink:0;position:relative}
+.panel-img img{width:100%;height:100%;object-fit:cover}
+.panel-img-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f5f0ea,#ede8e0);font-family:'Playfair Display',serif;font-size:5rem;color:#C4B49A;font-style:italic}
+.panel-body{padding:1.5rem;flex:1}
+.panel-brand{font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.panel-name{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:400;line-height:1.2;margin-bottom:12px}
+.panel-rating{display:flex;align-items:center;gap:8px;margin-bottom:16px}
+.panel-stars{color:#F5A623;font-size:14px;letter-spacing:1px}
+.panel-rcount{font-size:13px;color:var(--muted)}
+.panel-badge{display:inline-block;background:#FFF8EE;color:var(--gold);border:1px solid rgba(201,169,110,.3);border-radius:40px;padding:3px 12px;font-size:11px;font-weight:500;margin-bottom:16px}
+.panel-desc{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:20px}
+.panel-section-title{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.pros-list{list-style:none;display:flex;flex-direction:column;gap:6px;margin-bottom:20px}
+.pros-list li{font-size:13px;color:var(--text);padding-left:1.2rem;position:relative}
+.pros-list li::before{content:'✓';position:absolute;left:0;color:var(--gold);font-size:11px}
+.how-to{background:var(--bg);border-radius:12px;padding:14px 16px;margin-bottom:20px;font-size:13px;color:var(--muted);line-height:1.7}
+.retailer-section{margin-bottom:20px}
+.retailer-btns{display:flex;flex-direction:column;gap:8px}
+.r-btn{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-radius:12px;border:1.5px solid var(--border);text-decoration:none;color:var(--text);font-size:14px;font-weight:500;transition:all .15s;background:var(--white)}
+.r-btn:hover{border-color:var(--text);background:var(--bg)}
+.r-btn-left{display:flex;align-items:center;gap:10px}
+.r-name{font-weight:500}
+.r-tag{font-size:11px;color:var(--muted);font-weight:400}
+.r-arrow{color:var(--muted);font-size:16px}
+.r-primary{background:var(--text);color:var(--white);border-color:var(--text)}
+.r-primary .r-tag,.r-primary .r-arrow{color:rgba(255,255,255,.6)}
+.r-primary:hover{background:#333;border-color:#333}
 
 /* SKELETON */
-.loading-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:16px }
-.skeleton { background:var(--white); border-radius:var(--radius); border:1px solid var(--border); overflow:hidden }
-.skel-img { aspect-ratio:1; background:linear-gradient(90deg,#f0f0f0 25%,#e8e8e8 50%,#f0f0f0 75%); background-size:200% 100%; animation:shimmer 1.5s infinite }
-.skel-body { padding:14px 16px }
-.skel-line { height:12px; border-radius:6px; background:linear-gradient(90deg,#f0f0f0 25%,#e8e8e8 50%,#f0f0f0 75%); background-size:200% 100%; animation:shimmer 1.5s infinite; margin-bottom:8px }
-.skel-line.short { width:60% }
-.skel-line.btn { height:36px; margin-top:12px; border-radius:10px }
-@keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+.skel{background:var(--white);border-radius:var(--radius);border:1px solid var(--border);overflow:hidden}
+.skel-img{aspect-ratio:1;background:linear-gradient(90deg,#f0f0f0 25%,#e8e8e8 50%,#f0f0f0 75%);background-size:200% 100%;animation:sh 1.5s infinite}
+.skel-body{padding:12px 14px}
+.skel-line{height:11px;border-radius:6px;margin-bottom:8px;background:linear-gradient(90deg,#f0f0f0 25%,#e8e8e8 50%,#f0f0f0 75%);background-size:200% 100%;animation:sh 1.5s infinite}
+.skel-line.s{width:55%}.skel-line.b{height:32px;margin-top:10px;border-radius:10px}
+@keyframes sh{0%{background-position:200% 0}100%{background-position:-200% 0}}
 
-.no-results { display:none; text-align:center; padding:5rem 2rem; color:var(--muted) }
-.no-results h3 { font-family:'Playfair Display',serif; font-size:1.5rem; color:var(--text); margin-bottom:.5rem }
+.no-results{display:none;text-align:center;padding:4rem 2rem;color:var(--muted)}
+.no-results h3{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--text);margin-bottom:.5rem}
 
-footer { background:var(--white); border-top:1px solid var(--border); padding:1.5rem 2rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem }
-.footer-logo { font-family:'Playfair Display',serif; font-size:1.1rem }
-.footer-note { font-size:12px; color:var(--muted); max-width:500px; line-height:1.6 }
+footer{background:var(--white);border-top:1px solid var(--border);padding:1.25rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-logo{font-family:'Playfair Display',serif;font-size:1rem;letter-spacing:.05em}
+.footer-note{font-size:11px;color:var(--muted);max-width:500px;line-height:1.6}
 
-@media(max-width:768px){
+@media(max-width:700px){
   :root{--sidebar:0px}
   .sidebar{display:none}
   .topbar{padding:0 1rem}
-  .hero-banner{flex-direction:column;padding:2rem 1rem}
+  .hero{flex-direction:column;padding:1.5rem 1rem}
   .hero-stats{justify-content:center}
   .cat-bar{padding:0 1rem}
   .content{padding:1rem}
   .product-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .panel{width:100vw}
 }
 </style>
 </head>
 <body>
 
 <aside class="sidebar">
-  <a href="/" class="sidebar-logo">NACRÉ</a>
-  <a class="nav-icon active" title="All">🏠</a>
-  <a class="nav-icon" title="Skincare" onclick="filterCat('skincare',this)">✨</a>
-  <a class="nav-icon" title="Makeup" onclick="filterCat('makeup',this)">💄</a>
-  <a class="nav-icon" title="Fragrance" onclick="filterCat('fragrance',this)">🌸</a>
-  <a class="nav-icon" title="Haircare" onclick="filterCat('haircare',this)">💆</a>
-  <a class="nav-icon" title="Body Care" onclick="filterCat('body_care',this)">🛁</a>
-  <a class="nav-icon" title="Tools" onclick="filterCat('beauty_tools',this)">🔧</a>
-  <div style="margin-top:auto">
-    <a href="https://instagram.com/maisonglow" target="_blank" class="nav-icon" title="Instagram">📷</a>
-  </div>
+  <a href="/" class="logo-mark">NACRÉ</a>
+  <button class="sicon active" onclick="filterCat('all',this)" title="All">🏠</button>
+  <button class="sicon" onclick="filterCat('skincare',this)" title="Skincare">✨</button>
+  <button class="sicon" onclick="filterCat('makeup',this)" title="Makeup">💄</button>
+  <button class="sicon" onclick="filterCat('fragrance',this)" title="Fragrance">🌸</button>
+  <button class="sicon" onclick="filterCat('haircare',this)" title="Haircare">💆</button>
+  <button class="sicon" onclick="filterCat('body_care',this)" title="Body Care">🛁</button>
+  <button class="sicon" onclick="filterCat('nail_care',this)" title="Nails">💅</button>
+  <button class="sicon" onclick="filterCat('beauty_tools',this)" title="Tools">🔧</button>
+  <a href="https://instagram.com/maisonglow" target="_blank" class="sicon" style="margin-top:auto" title="Instagram">📷</a>
 </aside>
 
 <div class="main">
   <header class="topbar">
-    <div class="search-box">
+    <div class="search-wrap">
       <span class="search-icon">🔍</span>
       <input type="text" id="search" placeholder="Search beauty products...">
     </div>
-    <a href="https://instagram.com/maisonglow" target="_blank" class="insta-btn">📷 Follow</a>
+    <a href="https://instagram.com/maisonglow" target="_blank" class="follow-btn">📷 Follow</a>
   </header>
 
-  <div class="hero-banner">
-    <div class="hero-text">
+  <div class="hero">
+    <div>
       <h1>The luxury<br>beauty <em>edit</em></h1>
       <p>Curated reviews and honest comparisons across Sephora, Amazon, Glossier and beyond.</p>
     </div>
     <div class="hero-stats">
-      <div class="stat"><div class="stat-num" id="total-count">—</div><div class="stat-label">Products</div></div>
-      <div class="stat"><div class="stat-num">8</div><div class="stat-label">Categories</div></div>
-      <div class="stat"><div class="stat-num">5</div><div class="stat-label">Retailers</div></div>
+      <div class="stat"><div class="stat-n" id="total-count">—</div><div class="stat-l">Products</div></div>
+      <div class="stat"><div class="stat-n">8</div><div class="stat-l">Categories</div></div>
+      <div class="stat"><div class="stat-n">5</div><div class="stat-l">Retailers</div></div>
     </div>
   </div>
 
@@ -169,7 +185,7 @@ footer { background:var(--white); border-top:1px solid var(--border); padding:1.
   </div>
 
   <div class="content">
-    <div id="product-container"></div>
+    <div id="container"></div>
     <div class="no-results" id="no-results">
       <h3>No products found</h3>
       <p>Try a different search or category</p>
@@ -178,100 +194,160 @@ footer { background:var(--white); border-top:1px solid var(--border); padding:1.
 
   <footer>
     <div class="footer-logo">Nacré</div>
-    <div class="footer-note">Contains affiliate links — we may earn a commission at no extra cost to you. We only feature products we genuinely love.</div>
+    <div class="footer-note">Contains affiliate links. We may earn a commission at no extra cost to you.</div>
   </footer>
 </div>
 
+<!-- OVERLAY + PANEL -->
+<div class="overlay" id="overlay" onclick="closePanel()"></div>
+<div class="panel" id="panel">
+  <button class="panel-close" onclick="closePanel()">✕</button>
+  <div id="panel-content"></div>
+</div>
+
 <script>
-let allProducts=[], currentCat='all';
-const CATS={skincare:'Skincare',makeup:'Makeup',fragrance:'Fragrance',haircare:'Haircare',body_care:'Body Care',nail_care:'Nail Care',beauty_tools:'Beauty Tools',wellness_beauty:'Wellness'};
+let allProducts = [], currentCat = 'all';
+const CATS = {skincare:'Skincare',makeup:'Makeup',fragrance:'Fragrance',haircare:'Haircare',body_care:'Body Care',nail_care:'Nail Care',beauty_tools:'Beauty Tools',wellness_beauty:'Wellness'};
 
 function stars(r){const n=Math.round(parseFloat(r)||4);return'★'.repeat(n)+'☆'.repeat(5-n)}
 
-function buildCard(p){
-  const slug=(p.name||'').toLowerCase().replace(/\s+/g,'-').slice(0,40);
-  const cat=(p.category||'skincare').replace(/\s+/g,'_');
-  const reviewUrl=p.review_url||`https://nacre.beauty/docs/${cat}/${slug}.html`;
-  const shopUrl=p.affiliate_url||p.amazon_url||reviewUrl;
-  const initial=(p.name||'N')[0].toUpperCase();
-  const imgHtml=p.image_url
-    ?`<img src="${p.image_url}" alt="${p.name}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=img-placeholder><div class=p-initial>${initial}</div><div class=p-name>${p.name}</div></div>'">`
-    :`<div class="img-placeholder"><div class="p-initial">${initial}</div><div class="p-name">${p.name}</div></div>`;
-  let retailers='';
-  if(p.sephora_url)retailers+=`<a href="${p.sephora_url}" target="_blank" class="retailer-pill">🖤 Sephora</a>`;
-  if(p.amazon_url)retailers+=`<a href="${p.amazon_url}" target="_blank" class="retailer-pill">📦 Amazon</a>`;
-  if(p.ebay_url)retailers+=`<a href="${p.ebay_url}" target="_blank" class="retailer-pill">🛒 eBay</a>`;
-  return`<div class="product-card">
-    <div class="card-img">${imgHtml}${p.badge?`<div class="card-badge">${p.badge}</div>`:''}<div class="wishlist">♡</div></div>
+function imgTag(url, name, cls=''){
+  const l = (name||'P')[0].toUpperCase();
+  if(url && url.startsWith('http'))
+    return `<img src="${url}" alt="${name}" loading="lazy" class="${cls}" onerror="this.outerHTML='<div class=img-ph><div class=ph-letter>${l}</div><div class=ph-name>${name}</div></div>'">`;
+  if(url && !url.startsWith('http'))
+    return `<img src="${url}" alt="${name}" loading="lazy" class="${cls}" onerror="this.outerHTML='<div class=img-ph><div class=ph-letter>${l}</div><div class=ph-name>${name}</div></div>'">`;
+  return `<div class="img-ph"><div class="ph-letter">${l}</div><div class="ph-name">${name}</div></div>`;
+}
+
+function buildCard(p, i){
+  return `<div class="card" onclick="openPanel(${i})">
+    <div class="card-img">
+      ${imgTag(p.image_url, p.name)}
+      ${p.badge?`<div class="card-badge">${p.badge}</div>`:''}
+    </div>
     <div class="card-body">
       <div class="card-brand">${p.brand||''}</div>
       <div class="card-name">${p.name||''}</div>
-      <div class="card-rating"><span class="stars">${stars(p.rating)}</span><span class="rating-count">${p.rating||''} ${p.reviews?`(${p.reviews})`:''}</span></div>
-      <div class="card-actions">
-        <a href="${shopUrl}" target="_blank" rel="noopener" class="btn-shop">Shop Now</a>
-        <a href="${reviewUrl}" class="btn-review">Review</a>
+      <div class="card-rating-row">
+        <span class="card-stars">${stars(p.rating)}</span>
+        <span class="card-rcount">${p.rating||''} ${p.reviews?`(${p.reviews})`:''}</span>
       </div>
+      <button class="card-btn" onclick="event.stopPropagation();openPanel(${i})">View Product</button>
     </div>
-    ${retailers?`<div class="retailer-pills">${retailers}</div>`:''}
   </div>`;
 }
 
+function openPanel(idx){
+  const p = window._filtered[idx];
+  if(!p) return;
+
+  const l = (p.name||'P')[0].toUpperCase();
+  const imgHtml = (p.image_url)
+    ? `<img src="${p.image_url}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover" onerror="this.outerHTML='<div class=panel-img-ph>${l}</div>'">`
+    : `<div class="panel-img-ph">${l}</div>`;
+
+  // Build retailer buttons
+  let retailers = '';
+  if(p.sephora_url) retailers += `<a href="${p.sephora_url}" target="_blank" class="r-btn r-primary"><div class="r-btn-left"><span>🖤</span><div><div class="r-name">Sephora</div><div class="r-tag">Tap to shop</div></div></div><span class="r-arrow">→</span></a>`;
+  if(p.amazon_url)  retailers += `<a href="${p.amazon_url}" target="_blank" class="r-btn"><div class="r-btn-left"><span>📦</span><div><div class="r-name">Amazon</div><div class="r-tag">Free shipping available</div></div></div><span class="r-arrow">→</span></a>`;
+  if(p.ebay_url)    retailers += `<a href="${p.ebay_url}" target="_blank" class="r-btn"><div class="r-btn-left"><span>🛒</span><div><div class="r-name">eBay</div><div class="r-tag">Compare prices</div></div></div><span class="r-arrow">→</span></a>`;
+  if(!retailers && p.affiliate_url) retailers += `<a href="${p.affiliate_url}" target="_blank" class="r-btn r-primary"><div class="r-btn-left"><span>🛍</span><div><div class="r-name">Shop Now</div><div class="r-tag">Best price</div></div></div><span class="r-arrow">→</span></a>`;
+
+  // Pros list
+  const pros = p.pros || [];
+  const prosList = pros.length ? `<ul class="pros-list">${pros.map(x=>`<li>${x}</li>`).join('')}</ul>` : '';
+
+  document.getElementById('panel-content').innerHTML = `
+    <div class="panel-img">${imgHtml}</div>
+    <div class="panel-body">
+      <div class="panel-brand">${p.brand||''}</div>
+      <div class="panel-name">${p.name||''}</div>
+      <div class="panel-rating">
+        <span class="panel-stars">${stars(p.rating)}</span>
+        <span class="panel-rcount">${p.rating||''} ${p.reviews?`· ${p.reviews} reviews`:''}</span>
+      </div>
+      ${p.badge?`<div class="panel-badge">${p.badge}</div>`:''}
+      ${p.review_summary?`<p class="panel-desc">${p.review_summary}</p>`:''}
+      ${pros.length?`<div class="panel-section-title">What we love</div>${prosList}`:''}
+      ${p.how_to_use?`<div class="panel-section-title">How to use</div><div class="how-to">${p.how_to_use}</div>`:''}
+      <div class="retailer-section">
+        <div class="panel-section-title">Where to buy</div>
+        <div class="retailer-btns">${retailers||'<p style="font-size:13px;color:var(--muted)">Links coming soon</p>'}</div>
+      </div>
+    </div>`;
+
+  document.getElementById('overlay').classList.add('open');
+  document.getElementById('panel').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePanel(){
+  document.getElementById('overlay').classList.remove('open');
+  document.getElementById('panel').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => { if(e.key==='Escape') closePanel() });
+
 function showSkeletons(){
-  document.getElementById('product-container').innerHTML=`<div class="loading-grid">${Array(8).fill(`<div class="skeleton"><div class="skel-img"></div><div class="skel-body"><div class="skel-line short"></div><div class="skel-line"></div><div class="skel-line short"></div><div class="skel-line btn"></div></div></div>`).join('')}</div>`;
+  document.getElementById('container').innerHTML = `<div class="product-grid">${Array(8).fill(`<div class="skel"><div class="skel-img"></div><div class="skel-body"><div class="skel-line s"></div><div class="skel-line"></div><div class="skel-line s"></div><div class="skel-line b"></div></div></div>`).join('')}</div>`;
 }
 
 function render(products){
-  const c=document.getElementById('product-container');
-  const nr=document.getElementById('no-results');
+  window._filtered = products;
+  const c = document.getElementById('container');
+  const nr = document.getElementById('no-results');
   if(!products.length){c.innerHTML='';nr.style.display='block';return}
-  nr.style.display='none';
-  const groups={};
+  nr.style.display = 'none';
+  const groups = {};
   products.forEach(p=>{const k=(p.category||'other').replace(/\s+/g,'_');if(!groups[k])groups[k]=[];groups[k].push(p)});
-  c.innerHTML=Object.entries(groups).map(([cat,items])=>`
-    <div class="section">
-      <div class="section-head"><h2 class="section-title">${CATS[cat]||cat.replace(/_/g,' ')}</h2><span class="section-count">${items.length} picks</span></div>
-      <div class="product-grid">${items.map(buildCard).join('')}</div>
-    </div>`).join('');
-  document.getElementById('total-count').textContent=products.length;
+  let globalIdx = 0;
+  c.innerHTML = Object.entries(groups).map(([cat,items])=>{
+    const label = CATS[cat]||cat.replace(/_/g,' ');
+    const cards = items.map((p,_)=>buildCard(p, globalIdx++)).join('');
+    return `<div class="section"><div class="section-head"><h2 class="section-title">${label}</h2><span class="section-count">${items.length} picks</span></div><div class="product-grid">${cards}</div></div>`;
+  }).join('');
+  document.getElementById('total-count').textContent = products.length;
 }
 
-function filterCat(cat,btn){
-  currentCat=cat;
-  document.querySelectorAll('.cat-pill').forEach(b=>b.classList.remove('active'));
-  if(btn)btn.classList.add('active');
+function filterCat(cat, btn){
+  currentCat = cat;
+  document.querySelectorAll('.cat-pill,.sicon').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
   applyFilters();
 }
 
 function applyFilters(){
-  const q=document.getElementById('search').value.toLowerCase();
-  let f=allProducts;
-  if(currentCat!=='all')f=f.filter(p=>(p.category||'').replace(/\s+/g,'_')===currentCat);
-  if(q)f=f.filter(p=>(p.name+p.brand+p.category).toLowerCase().includes(q));
+  const q = document.getElementById('search').value.toLowerCase();
+  let f = allProducts;
+  if(currentCat!=='all') f=f.filter(p=>(p.category||'').replace(/\s+/g,'_')===currentCat);
+  if(q) f=f.filter(p=>(p.name+' '+(p.brand||'')+' '+(p.category||'')).toLowerCase().includes(q));
   render(f);
 }
 
-async function loadProducts(){
+async function load(){
   showSkeletons();
   try{
-    const res=await fetch('./products.json?v='+Date.now());
-    if(!res.ok)throw new Error();
-    allProducts=await res.json();
-  }catch{
-    allProducts=[
-      {name:"Dermalogica Healthy Skin Kit",brand:"Dermalogica",category:"skincare",rating:4.8,reviews:"2.1k",image_url:"",affiliate_url:"https://nacre.beauty/docs/skincare/dermalogica-discover-healthy-skin-kit.html",review_url:"https://nacre.beauty/docs/skincare/dermalogica-discover-healthy-skin-kit.html",badge:"Editor's Pick"},
-      {name:"The Ordinary Mini Discovery Set",brand:"The Ordinary",category:"skincare",rating:4.6,reviews:"890",image_url:"",affiliate_url:"#",review_url:"https://nacre.beauty/docs/skincare/the-ordinary-the-mini-discovery-set.html"},
-      {name:"Youth To The People Superfood Cleanser",brand:"Youth To The People",category:"skincare",rating:4.7,reviews:"3.4k",image_url:"",affiliate_url:"#",review_url:"https://nacre.beauty/docs/skincare/youth-to-the-people-superfood-cleanser.html",badge:"Best Seller"},
-      {name:"Kayali Vanilla 28 Eau de Parfum",brand:"Kayali",category:"fragrance",rating:4.9,reviews:"1.2k",image_url:"",affiliate_url:"#",review_url:"#"},
-      {name:"Charlotte Tilbury Pillow Talk Lipstick",brand:"Charlotte Tilbury",category:"makeup",rating:4.8,reviews:"5.6k",image_url:"",affiliate_url:"#",review_url:"#",badge:"Top Rated"},
-      {name:"Olaplex No.3 Hair Perfector",brand:"Olaplex",category:"haircare",rating:4.7,reviews:"12k",image_url:"",affiliate_url:"#",review_url:"#"},
+    const r = await fetch('./products.json?v='+Date.now());
+    if(!r.ok) throw new Error();
+    allProducts = await r.json();
+  } catch {
+    allProducts = [
+      {name:"Dermalogica Healthy Skin Kit",brand:"Dermalogica",category:"skincare",rating:4.8,reviews:"2.1k",image_url:"",badge:"Editor's Pick",review_summary:"A complete starter kit that delivers real results in just 2 weeks.",pros:["Gentle on sensitive skin","Travel-friendly sizes","Dermatologist tested"],how_to_use:"Cleanse morning and night, apply toner, finish with moisturiser.",sephora_url:"https://www.sephora.com/search?keyword=dermalogica",amazon_url:"https://www.amazon.com/s?k=dermalogica+healthy+skin+kit"},
+      {name:"The Ordinary Mini Discovery Set",brand:"The Ordinary",category:"skincare",rating:4.6,reviews:"890",image_url:"",review_summary:"Science-backed formulas at an unbeatable price point.",pros:["Evidence-based ingredients","Transparent labelling","Fragrance free"],amazon_url:"https://www.amazon.com/s?k=the+ordinary+discovery+set"},
+      {name:"Kayali Vanilla 28 Eau de Parfum",brand:"Kayali",category:"fragrance",rating:4.9,reviews:"1.2k",image_url:"",badge:"Best Seller",review_summary:"A warm, gourmand vanilla that lasts all day and turns heads.",pros:["12-hour longevity","Unisex appeal","Gorgeous bottle"],sephora_url:"https://www.sephora.com/search?keyword=kayali+vanilla"},
+      {name:"Charlotte Tilbury Pillow Talk Lipstick",brand:"Charlotte Tilbury",category:"makeup",rating:4.8,reviews:"5.6k",image_url:"",badge:"Top Rated",review_summary:"The universally flattering nude-pink that suits every skin tone.",pros:["Universally flattering","Moisturising formula","Iconic packaging"],sephora_url:"https://www.sephora.com/search?keyword=charlotte+tilbury+pillow+talk",amazon_url:"https://www.amazon.com/s?k=charlotte+tilbury+pillow+talk"},
+      {name:"Olaplex No.3 Hair Perfector",brand:"Olaplex",category:"haircare",rating:4.7,reviews:"12k",image_url:"",review_summary:"The original bond-building treatment that repairs damaged hair from within.",pros:["Repairs broken bonds","Works on all hair types","Salon results at home"],amazon_url:"https://www.amazon.com/s?k=olaplex+no+3"},
+      {name:"Gisou Honey Infused Hair Oil",brand:"Gisou",category:"haircare",rating:4.6,reviews:"3.4k",image_url:"",review_summary:"Lightweight hair oil that adds shine without weighing hair down.",pros:["Non-greasy formula","Natural honey extract","Beautiful scent"],sephora_url:"https://www.sephora.com/search?keyword=gisou+hair+oil"},
     ];
   }
   render(allProducts);
-  document.getElementById('total-count').textContent=allProducts.length;
+  document.getElementById('total-count').textContent = allProducts.length;
 }
 
-document.getElementById('search').addEventListener('input',applyFilters);
-loadProducts();
+document.getElementById('search').addEventListener('input', applyFilters);
+load();
 </script>
 </body>
 </html>
