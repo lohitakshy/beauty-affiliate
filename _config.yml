@@ -1,0 +1,1 @@
+exclude: [venv, runs, video_queue.jsonl, beauty_agent.py, image_downloader.py, generate_products_json.py, fetch_images.py, video_processor.py, README.md]
