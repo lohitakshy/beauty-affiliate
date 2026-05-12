@@ -163,7 +163,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);dis
   <button class="sicon" onclick="filterCat('body_care',this)" title="Body Care">🛁</button>
   <button class="sicon" onclick="filterCat('nail_care',this)" title="Nails">💅</button>
   <button class="sicon" onclick="filterCat('beauty_tools',this)" title="Tools">🔧</button>
-  <a href="https://instagram.com/maisonglow412" target="_blank" class="sicon" style="margin-top:auto" title="Instagram">📷</a>
+  <a href="https://www.instagram.com/nacre.beautyy/" target="_blank" class="sicon" style="margin-top:auto" title="Instagram">📷</a>
 </aside>
 
 <div class="main">
@@ -172,7 +172,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);dis
       <span class="search-icon">🔍</span>
       <input type="text" id="search" placeholder="Search beauty products...">
     </div>
-    <a href="https://instagram.com/maisonglow412" target="_blank" class="follow-btn">📷 @maisonglow412</a>
+    <a href="https://www.instagram.com/nacre.beautyy/" target="_blank" class="follow-btn">📷 @nacre.beautyy</a>
   </header>
 
   <!-- HOME VIEW -->
@@ -402,12 +402,14 @@ function render(products){
 function filterCat(cat,btn){
   currentCat=cat;
   document.querySelectorAll('.cat-pill').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.sicon').forEach(b=>b.classList.remove('active'));
   if(btn) btn.classList.add('active');
-  // Always go home first, then filter
-  if(document.getElementById('product-view').style.display!=='none'){
-    showHome();
-  }
+  if(document.getElementById('product-view').style.display!=='none') showHome();
   applyFilters();
+  // Auto-deselect sidebar icon after 800ms
+  if(btn && btn.classList.contains('sicon')){
+    setTimeout(()=>btn.classList.remove('active'), 800);
+  }
 }
 
 function applyFilters(){

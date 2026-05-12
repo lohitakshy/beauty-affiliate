@@ -64,7 +64,6 @@ def find_trending_products(category):
             "rating":    item.get("rating", 0),
             "reviews":   item.get("reviews", 0),
             "image_url": item.get("thumbnail", ""),
-	    "extra_images": item.get("thumbnails", [])[:3],
             "category":  category,
         })
     return products
@@ -499,13 +498,9 @@ def run_daily_agent():
                 )
 
             all_results.append({
-                   	"product": product["name"],
-			"category": category,
-    			"brand": product.get("brand", ""),
-    			"rating": product.get("rating", 0),
-    			"reviews": product.get("reviews", 0),
-    			"image_url": product.get("image_url", ""),
-    			"affiliate_links": affiliate_links,
+                "product": product["name"],
+                "category": category,
+                "affiliate_links": affiliate_links,
             })
 
             time.sleep(2)  # Polite delay between API calls
