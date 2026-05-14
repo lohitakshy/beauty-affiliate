@@ -541,8 +541,22 @@ def run_daily_agent():
     with open(summary_file, "w") as f:
         json.dump(all_results, f, indent=2)
 
-    # Regenerate products.json for the homepage
+    # Merge new products with existing - NEVER overwrite existing images
     print("\nUpdating products.json for nacre.beauty...")
+    import json as _json, os as _os
+    existing = []
+    if _os.path.exists("products.json"):
+        with open("products.json") as _f:
+            existing = _json.load(_f)
+    # Index existing by name to preserve images
+    existing_map = {p["name"]: p for p in existing}
+    for result in all_results:
+        name = result.get("product", "")
+        if name in existing_map:
+            # Preserve existing image data
+            result["image_url"] = existing_map[name].get("image_url", result.get("image_url",""))
+            result["extra_images"] = existing_map[name].get("extra_images", [])
+            result["video_url"] = existing_map[name].get("video_url", "")
     build_products_json()
 
     # Auto commit and push everything live to nacre.beauty
