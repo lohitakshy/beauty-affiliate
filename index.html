@@ -257,13 +257,9 @@ function showHome(push){
 
 function getImgs(p){
   const imgs=[];
-  const base=p.image_url||'';
-  if(!base) return imgs;
-  imgs.push(base);
-  const noExt=base.replace(/\.jpg$/,'');
-  const noNum=noExt.replace(/-\d+$/,'');
-  for(let i=1;i<=3;i++) imgs.push(noNum+'-'+i+'.jpg');
-  return imgs;
+  if(p.image_url) imgs.push(p.image_url);
+  if(Array.isArray(p.extra_images)) imgs.push(...p.extra_images);
+  return imgs.filter(Boolean);
 }
 
 function showProduct(idx,push){
