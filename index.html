@@ -257,9 +257,13 @@ function showHome(push){
 
 function getImgs(p){
   const imgs=[];
-  if(p.image_url) imgs.push(p.image_url);
-  if(Array.isArray(p.extra_images)) imgs.push(...p.extra_images);
-  return imgs.filter(Boolean);
+  const base=p.image_url||'';
+  if(!base) return imgs;
+  imgs.push(base);
+  const noExt=base.replace(/\.jpg$/,'');
+  const noNum=noExt.replace(/-\d+$/,'');
+  for(let i=1;i<=3;i++) imgs.push(noNum+'-'+i+'.jpg');
+  return imgs;
 }
 
 function showProduct(idx,push){
@@ -334,15 +338,7 @@ function buildInfo(p){
       <a href="${cartUrl}" target="_blank" rel="noopener" class="pi-btn pi-btn-blue">Add to cart — Amazon</a>
     </div>
     <div class="pi-social"><button>♡ Save</button><button>↗ Share</button></div>
-    <div style="height:2rem"></div>\`;
-  const vc=document.getElementById('video-container');
-  if(vc){
-    if(p.video_url){
-      vc.innerHTML=\`<iframe src="\${p.video_url}" width="100%" height="360" frameborder="0" allowfullscreen style="border-radius:12px;display:block"></iframe>\`;
-    } else {
-      vc.innerHTML='<div class="video-ph"><div style="font-size:2.5rem">🎬</div><div style="font-size:14px;font-weight:500">Video coming soon</div></div>';
-    }
-  }
+    <div style="height:2rem"></div>`;
 }
 
 function buildHeroFloats(products){
