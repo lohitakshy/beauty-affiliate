@@ -57,15 +57,37 @@ def find_trending_products(category):
 
     products = []
     for item in data.get("shopping_results", [])[:PRODUCTS_PER_CATEGORY]:
-        products.append({
-            "name":      item.get("title", ""),
-            "brand":     item.get("source", ""),
-            "price":     item.get("price", ""),
-            "rating":    item.get("rating", 0),
-            "reviews":   item.get("reviews", 0),
-            "image_url": item.get("thumbnail", ""),
-            "category":  category,
-        })
+            # Get direct Amazon URL if available
+            product_link = item.get("product_link", "") or item.get("link", "")
+            asin = ""
+            amazon_url = ""
+            
+            # Extract ASIN from Amazon URL
+            import re as _re
+            asin_match = _re.search(r"/dp/([A-Z0-9]{10})", product_link)
+            if asin_match:
+                asin = asin_match.group(1)
+                amazon_url = f"https://www.amazon.com/dp/{asin}?tag=nacre0c-20"
+            
+            # Get highest quality image available
+            image_url = (
+                item.get("original", "") or
+                item.get("thumbnail", "") or ""
+            )
+            # Use SerpAPI image search for better quality if thumbnail is low-res
+            
+            products.append({
+                "name":        item.get("title", ""),
+                "brand":       item.get("source", ""),
+                "price":       item.get("price", ""),
+                "rating":      item.get("rating", 0),
+                "reviews":     item.get("reviews", 0),
+                "image_url":   image_url,
+                "amazon_url":  amazon_url,
+                "asin":        asin,
+                "product_link": product_link,
+                "category":    category,
+            })
     return products
 
 # ── STEP 2: AI REVIEW SUMMARY ────────────────────────────────────────────────
@@ -116,8 +138,9 @@ def build_affiliate_links(product_name, brand):
 
     links = {}
 
-    # Amazon Associates
+    # Amazon Associates - use direct product URL if ASIN available
     if AFFILIATE_IDS["amazon"]:
+        asin = product_name  # will be overridden below
         links["amazon"] = (
             f"https://www.amazon.com/s?k={encoded}"
             f"&tag={AFFILIATE_IDS['amazon']}"
@@ -486,6 +509,9 @@ def run_daily_agent():
 
             # 3. Build affiliate links
             affiliate_links = build_affiliate_links(product["name"], product.get("brand", ""))
+            # Use direct Amazon URL if we have an ASIN
+            if product.get("amazon_url"):
+                affiliate_links["amazon"] = product["amazon_url"]
 
             # 4. Queue video
             queue_video_creation(product, ai_content)

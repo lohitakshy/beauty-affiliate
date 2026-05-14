@@ -1,25 +1,19 @@
 """
-Generates products.json from the agent's run history.
-This file powers the nacre.beauty homepage product grid.
-Run automatically after beauty_agent.py completes.
+Generates products.json from the agent's daily runs.
+Uses direct Amazon CDN image URLs — no local images/ folder needed.
 """
-
 import os, json, glob
 from datetime import datetime
 
-RUNS_DIR  = "runs"
-DOCS_DIR  = "docs"
-OUT_FILE  = "products.json"
+RUNS_DIR = "runs"
+OUT_FILE = "products.json"
 
 def build_products_json():
     products = []
-
-    # Load all run summaries
     run_files = sorted(glob.glob(f"{RUNS_DIR}/run_*.json"), reverse=True)
-
     seen = set()
 
-    for run_file in run_files[:7]:  # Last 7 days of runs
+    for run_file in run_files[:7]:
         try:
             with open(run_file) as f:
                 run_data = json.load(f)
@@ -31,40 +25,34 @@ def build_products_json():
                 seen.add(name)
 
                 category = item.get("category", "").replace(" ", "_")
-
-                # Build review page URL
-                slug = name.lower().replace(" ", "-")[:40]
-                review_url = f"https://nacre.beauty/docs/{category}/{slug}.html"
-
-                # Build affiliate URLs
                 affiliate_links = item.get("affiliate_links", {})
-                primary_url = (
-                    affiliate_links.get("sephora") or
-                    affiliate_links.get("amazon") or
-                    affiliate_links.get("glossier") or
-                    review_url
-                )
+
+                # Prefer direct Amazon URL with ASIN
+                amazon_url = item.get("amazon_url") or affiliate_links.get("amazon", "")
+                sephora_url = item.get("sephora_url") or affiliate_links.get("sephora", "")
+
+                # Image: prefer local if downloaded, otherwise use original URL directly
+                image_url = item.get("image_url", "")
 
                 products.append({
-                    "name":          name,
-                    "category":      category,
-                    "brand":         item.get("brand", ""),
-                    "rating":        item.get("rating", 4.5),
-                    "reviews":       item.get("reviews", ""),
-                    "image_url":     item.get("image_url", ""),
-                    "affiliate_url": primary_url,
-                    "review_url":    review_url,
-                    "amazon_url":    affiliate_links.get("amazon", ""),
-                    "sephora_url":   affiliate_links.get("sephora", ""),
-                    "ebay_url":      affiliate_links.get("ebay", ""),
-                    "date_added":    item.get("date", datetime.now().strftime("%Y-%m-%d")),
+                    "name":         name,
+                    "category":     category,
+                    "brand":        item.get("brand", ""),
+                    "rating":       item.get("rating", 0),
+                    "reviews":      item.get("reviews", 0),
+                    "price":        item.get("price", ""),
+                    "image_url":    image_url,
+                    "amazon_url":   amazon_url,
+                    "sephora_url":  sephora_url,
+                    "affiliate_url": amazon_url or sephora_url,
+                    "asin":         item.get("asin", ""),
+                    "date_added":   item.get("date", datetime.now().strftime("%Y-%m-%d")),
                 })
 
         except Exception as e:
-            print(f"  Error reading {run_file}: {e}")
+            print(f"Error reading {run_file}: {e}")
             continue
 
-    # Sort by date, newest first
     products.sort(key=lambda x: x.get("date_added", ""), reverse=True)
 
     with open(OUT_FILE, "w") as f:
