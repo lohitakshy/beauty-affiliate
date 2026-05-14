@@ -544,5 +544,34 @@
     "affiliate_url": "https://www.amazon.com/s?k=Nordstrom%20Solawave%204-in-1%20Radiant%20Renewal%20Skincare%20Wand&tag=yourbrand-20",
     "asin": "",
     "date_added": "2026-05-13"
+  },
+  {
+    "name": "Anti-Aging Face Moisturizer with Retinol & Collagen",
+    "brand": "Made in USA",
+    "category": "skincare",
+    "rating": 4.5,
+    "reviews": "2.3k",
+    "price": "Check on Amazon",
+    "badge": "Best Seller",
+    "review_summary": "A powerful anti-aging moisturizer combining retinol, collagen and hyaluronic acid for firming and hydrating results day and night.",
+    "pros": [
+      "Retinol + Collagen + Hyaluronic Acid",
+      "Works for men and women",
+      "Made in USA",
+      "Day & night formula"
+    ],
+    "how_to_use": "Apply to clean face and neck morning and night. Always use SPF in the morning when using retinol.",
+    "image_url": "https://m.media-amazon.com/images/I/71+lAGXgBDL._SL1500_.jpg",
+    "extra_images": [
+      "https://m.media-amazon.com/images/I/81jm3k1087L._SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/81J04tpyb0L._SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/81MesRt0FrL._SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/81MrZ6AtAPL._SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/81DG5-c39lL._SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/71XfaXByjYL._SL1500_.jpg"
+    ],
+    "video_url": "https://www.amazon.com/vdp/0512306e46164ea69ef037fd6710673e?aci=amzn1.ive.seller.video.0512306e46164ea69ef037fd6710673e&product=B0DPJ3V3XD&ref=cm_sw_cp_r_ib_dt_kTVn2OTE2eCcZ",
+    "amazon_url": "https://www.amazon.com/dp/B0BBSP2JNQ?tag=nacre0c-20",
+    "affiliate_url": "https://www.amazon.com/dp/B0BBSP2JNQ?tag=nacre0c-20"
   }
 ]
