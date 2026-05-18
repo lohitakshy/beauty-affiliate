@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Nacré Beauty</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:#FAF6F0;color:#1C1612}
+nav{background:#fff;border-bottom:1px solid #E8E8E8;padding:0 2rem;height:60px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-style:italic;text-decoration:none;color:#1C1612}
+.nav-links{display:flex;gap:2rem}
+.nav-links a{font-size:13px;color:#888;text-decoration:none;transition:color .15s}
+.nav-links a:hover{color:#1C1612}
+.hero{background:#1C1612;padding:5rem 2rem;text-align:center}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:400;font-style:italic;color:#FAF6F0;margin-bottom:1rem}
+.hero p{font-size:15px;color:#C9A96E;letter-spacing:.08em;text-transform:uppercase}
+.content{max-width:660px;margin:4rem auto;padding:0 2rem 4rem}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:3rem}
+.contact-card{background:#fff;border-radius:12px;padding:1.5rem;border:1px solid #E8E8E8;text-align:center}
+.contact-icon{font-size:2rem;margin-bottom:.75rem}
+.contact-card h3{font-family:'Playfair Display',serif;font-size:1rem;margin-bottom:.5rem}
+.contact-card a{font-size:14px;color:#C9A96E;text-decoration:none}
+.contact-card p{font-size:13px;color:#888;margin-top:.25rem}
+h2{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:400;margin-bottom:1rem}
+.form-group{margin-bottom:1.25rem}
+label{display:block;font-size:13px;font-weight:500;margin-bottom:.4rem;color:#444}
+input,textarea{width:100%;padding:12px 16px;border:1.5px solid #E8E8E8;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:14px;color:#1C1612;background:#fff;outline:none;transition:border-color .2s}
+input:focus,textarea:focus{border-color:#C9A96E}
+textarea{height:140px;resize:vertical}
+.submit-btn{background:#1C1612;color:#FAF6F0;border:none;border-radius:10px;padding:14px 32px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;cursor:pointer;letter-spacing:.03em;transition:background .15s}
+.submit-btn:hover{background:#333}
+footer{background:#1C1612;color:#888;text-align:center;padding:2rem;font-size:12px;margin-top:4rem}
+footer a{color:#C9A96E;text-decoration:none}
+@media(max-width:600px){.contact-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-logo">nacré</a>
+  <div class="nav-links">
+    <a href="/">Shop</a>
+    <a href="/about.html">About</a>
+    <a href="/contact.html">Contact</a>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/disclosure.html">Disclosure</a>
+  </div>
+</nav>
+<div class="hero">
+  <h1>Get in touch</h1>
+  <p>We would love to hear from you</p>
+</div>
+<div class="content">
+  <div class="contact-grid">
+    <div class="contact-card">
+      <div class="contact-icon">📧</div>
+      <h3>Email us</h3>
+      <a href="mailto:hello@nacre.beauty">hello@nacre.beauty</a>
+      <p>We reply within 24 hours</p>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon">📷</div>
+      <h3>Instagram</h3>
+      <a href="https://instagram.com/nacre.beautyy" target="_blank">@nacre.beautyy</a>
+      <p>DM us anytime</p>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon">📌</div>
+      <h3>Pinterest</h3>
+      <a href="https://pinterest.com/ShopNacreBeauty" target="_blank">ShopNacreBeauty</a>
+      <p>Follow our boards</p>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon">🌐</div>
+      <h3>Website</h3>
+      <a href="https://nacre.beauty">nacre.beauty</a>
+      <p>Shop the full edit</p>
+    </div>
+  </div>
+
+  <h2>Send a message</h2>
+  <form action="https://formspree.io/f/hello@nacre.beauty" method="POST">
+    <div class="form-group">
+      <label>Your name</label>
+      <input type="text" name="name" placeholder="Jane Smith" required>
+    </div>
+    <div class="form-group">
+      <label>Your email</label>
+      <input type="email" name="email" placeholder="jane@email.com" required>
+    </div>
+    <div class="form-group">
+      <label>Subject</label>
+      <input type="text" name="subject" placeholder="Product recommendation, collaboration...">
+    </div>
+    <div class="form-group">
+      <label>Message</label>
+      <textarea name="message" placeholder="Tell us what's on your mind..." required></textarea>
+    </div>
+    <button type="submit" class="submit-btn">Send message →</button>
+  </form>
+</div>
+<footer>
+  © 2025 Nacré Beauty · <a href="/privacy.html">Privacy Policy</a> · <a href="/disclosure.html">Affiliate Disclosure</a> · <a href="/contact.html">Contact</a>
+</footer>
+</body>
+</html>
